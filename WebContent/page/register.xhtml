@@ -1,0 +1,125 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+  <ui:composition template="/page/template/layout.xhtml">
+    <ui:define name="menu" />
+    
+    <ui:define name="page-title">
+      <p:panel class="page-title">
+          <b>Registration form</b>
+      </p:panel>
+    </ui:define>>
+    
+    <ui:define name="content">
+		<h:form>		    
+		    <p:spacer height="10" />
+		    
+		    <h:panelGrid id="user-registration-grid" columns="2" cellpadding="5">
+		        <f:facet name="header">
+                    <p:messages id="msgs" />
+                </f:facet>
+ 
+		        <h:outputText for="username" class="bold-label" value="#{msgs['user.username']}: *" />
+                <p:inputText id="username" value="#{userBean.user.username}" required="true" requiredMessage="Username is required." />
+                
+                <h:outputLabel class="bold-label" for="pwd1" value="#{msgs['user.password']}: *" />
+                <p:password id="pwd1" value="#{userBean.user.password}" match="pwd2" label="#{msgs['user.password']}: *" required="true" requiredMessage="Password1 is required." validatorMessage="Passwords doesn't match!"/>
+         
+                <h:outputLabel class="bold-label" for="pwd2" value="#{msgs['label.repeat-password']}: *" />
+                <p:password id="pwd2" value="#{userBean.user.password}" label="Password2" required="true" requiredMessage="Password2 is required." />
+                
+		        <h:outputText class="bold-label" value="#{msgs['user.email']}: *" />
+                <p:inputText id="email" value="#{userBean.user.email}" required="true" requiredMessage="Email is required." />
+                
+		        <h:outputText class="bold-label" value="#{msgs['user.firstname']}: *" />
+		        <p:inputText id="firstname" value="#{userBean.user.firstName}" required="true" requiredMessage="First name is required." />
+		        
+		        <h:outputText class="bold-label" value="#{msgs['user.middlename']}: " />
+                <p:inputText id="middlename" value="#{userBean.user.middleName}" />
+                
+                <h:outputText class="bold-label" value="#{msgs['user.lastname']}: *" />
+                <p:inputText id="lastname" value="#{userBean.user.lastName}" required="true" requiredMessage="Last name is required." />
+                
+                <h:outputText class="bold-label" for="country" value="Country: *" />
+                <p:selectOneMenu id="country" value="#{countriesBean.defaultCountry}" style="width:150px">
+                    <f:selectItems value="#{countriesBean.countries}" />
+                </p:selectOneMenu>
+		    </h:panelGrid>
+		 
+		    <p:spacer height="10" />
+		 
+		    <p:separator />
+                
+	        <p:selectOneRadio id="default-devision" layout="custom" value="#{userBean.user.defaultDevision}" >
+	            <f:selectItem itemLabel="Production" itemValue="PRD" />
+	            <f:selectItem itemLabel="Standart" itemValue="STD" />
+	            <f:selectItem itemLabel="Open" itemValue="OPEN" />
+	            <f:selectItem itemLabel="Revolver" itemValue="REV" />
+	            <f:selectItem itemLabel="Classic" itemValue="CLASSIC" />
+	        </p:selectOneRadio>
+           
+            &nbsp;&nbsp;
+            <p:outputLabel for="default-devision" value="Default Devision:" class="bold-label" />&nbsp;&nbsp;
+               
+            <p:radioButton id="opt1" for="default-devision" itemIndex="0" />&nbsp;
+            <h:outputLabel for="opt1" value="Production" style="color:white" />&nbsp;&nbsp;
+            
+            <p:radioButton id="opt2" for="default-devision" itemIndex="1" />&nbsp;
+            <h:outputLabel for="opt2" value="Standart" style="color:white" />&nbsp;&nbsp;
+
+            <p:radioButton id="opt3" for="default-devision" itemIndex="2" />&nbsp;
+            <h:outputLabel for="opt3" value="Open" style="color:white" />&nbsp;&nbsp;
+            
+            <p:radioButton id="opt4" for="default-devision" itemIndex="3" />&nbsp;
+            <h:outputLabel for="opt4" value="Revolver" style="color:white" />&nbsp;&nbsp;
+   
+            <p:radioButton id="opt5" for="default-devision" itemIndex="4" />&nbsp;
+            <h:outputLabel for="opt5" value="Classic" style="color:white" />
+               
+            <br /> <br />
+                
+            <p:selectOneRadio id="cathegory" layout="custom" value="#{userBean.user.cathegory}">
+                <f:selectItem itemLabel="Regular" itemValue="PRD" />
+                <f:selectItem itemLabel="Lady" itemValue="STD" />
+                <f:selectItem itemLabel="Junior" itemValue="OPEN" />
+                <f:selectItem itemLabel="Sinior" itemValue="REV" />
+                <f:selectItem itemLabel="Super Sinior" itemValue="CLASSIC" />
+            </p:selectOneRadio>
+
+            &nbsp;&nbsp;
+            <p:outputLabel for="cathegory" value="Cathegory:" class="bold-label" />&nbsp;&nbsp;
+            
+            <p:radioButton id="cat-opt1" for="cathegory" itemIndex="0" />&nbsp;
+            <h:outputLabel for="cat-opt1" value="Regular" style="color:white" />&nbsp;&nbsp;
+            
+            <p:radioButton id="cat-opt2" for="cathegory" itemIndex="1" />&nbsp;
+            <h:outputLabel for="cat-opt2" value="Lady" style="color:white" />&nbsp;&nbsp;
+
+            <p:radioButton id="cat-opt3" for="cathegory" itemIndex="2" />&nbsp;
+            <h:outputLabel for="cat-opt3" value="Junior" style="color:white" />&nbsp;&nbsp;
+            
+            <p:radioButton id="cat-opt4" for="cathegory" itemIndex="3" />&nbsp;
+            <h:outputLabel for="cat-opt4" value="Sinior" style="color:white" />&nbsp;&nbsp;
+   
+            <p:radioButton id="cat-opt5" for="cathegory" itemIndex="4" />&nbsp;
+            <h:outputLabel for="cat-opt5" value="Super Sinior" style="color:white" />
+            
+            <p:spacer height="10" />
+            
+            <p:separator />
+            	 
+            <p:spacer height="10" />
+            <br /><br />
+		    <p:commandButton id="btnAll" process="@all" update="user-registration-grid" actionListener="#{userBean.save}" value="Register" icon="ui-icon-check" />
+		</h:form>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

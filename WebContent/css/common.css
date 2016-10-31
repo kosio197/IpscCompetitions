@@ -1,0 +1,29 @@
+td {
+    color: #FFF;
+}
+
+body {
+    background-color: black;
+}
+
+.ui-button {
+	font-size: 15 !important;
+}
+
+.ui-widget {
+	font-size: 1em;
+}
+
+.title {
+	color: white;
+}
+
+.page-title {
+	color: white;
+    padding: 0px !important;
+}
+
+.bold-label {
+    font-weight: bold;
+    color:white;
+}
