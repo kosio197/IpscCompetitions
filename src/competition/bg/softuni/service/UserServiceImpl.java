@@ -24,6 +24,16 @@ public class UserServiceImpl implements UserService {
 	public User getUser(String email) {
 		return null;
 	}
+	
+	public User validateUser(String username, String password) {
+		User user = repository.getUser(username);
+		
+		if (user == null || !user.getPassword().equals(password)) {
+			return null;
+		}
+		
+		return user;
+	}
 
 	public UsersRepository getRepository() {
 		return repository;

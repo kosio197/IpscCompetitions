@@ -4,6 +4,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import competition.bg.softuni.model.user.User;
 import competition.bg.softuni.service.UserService;
@@ -13,6 +14,9 @@ import competition.bg.softuni.service.UserService;
 public class UserBean {
 	@Inject
 	private UserService userService;
+	
+    @Inject
+    private HttpServletRequest request;
 	
 	private User user;
 
@@ -29,8 +33,10 @@ public class UserBean {
 		this.user = user;
 	}
 	
-	public void save() {
+	public String save() {
 		userService.addUser(user);
+				
+		return "/page/competitions?faces-redirect=true";
 	}
 
 	public UserService getUserService() {

@@ -27,11 +27,11 @@
                      </p:column>
 
                      <p:column headerText="#{msgs['label.devision']}">
-                         <h:outputText value="#{competitor.devision}" />
+                         <h:outputText value="#{competitor.usedevision}" />
                      </p:column>
 
                      <p:column headerText="#{msgs['label.cathegory']}">
-                         <h:outputText value="#{competitor.cathegory}" />
+                         <h:outputText value="#{competitor.user.cathegory}" />
                      </p:column>
                     </p:dataTable>
                 </p:overlayPanel>
@@ -52,13 +52,13 @@
                     </p:column>
 
                     <p:column headerText="#{msgs['label.cathegory']}">
-                        <h:outputText value="#{competitor.cathegory}" />
+                        <h:outputText value="#{competitor.user.cathegory}" />
                     </p:column>
                  </p:dataTable>
                 </p:overlayPanel>
 
                 <p:commandButton value="#{msgs['button.competition.register']}" icon="ui-icon-extlink" 
-                    ajax="false" action="register.xhmtl?faces-redirect=true"/>
+                    ajax="false" action="register?faces-redirect=true" />
 
                 <h:panelGrid columns="2" cellpadding="5">
                   <h:outputText value="" />

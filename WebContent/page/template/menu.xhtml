@@ -12,8 +12,16 @@
     <h:form id="main_menu">
       <p:menubar>
         <f:facet name="options">
-          <p:commandButton type="button" value="#{msgs['button.login']}" icon="ui-icon-extlink" />
-          <p:commandButton type="button" value="#{msgs['button.register']}" icon="ui-icon-extlink" />
+            <c:choose>
+			    <c:when test="#{not empty LOGGED_USER}">
+                    Hello #{LOGGED_USER.username}
+                    <p:commandButton value="#{msgs['button.logout']}" icon="ui-icon-extlink" action="login.xhtml?faces-redirect=true" />
+			    </c:when>
+			    <c:otherwise>
+                    <p:commandButton value="#{msgs['button.login']}" icon="ui-icon-extlink" action="login.xhtml?faces-redirect=true" />
+                    <p:commandButton value="#{msgs['button.register']}" icon="ui-icon-extlink" ajax="false" action="register.xhtml?faces-redirect=true" />
+			    </c:otherwise>
+			</c:choose>
         </f:facet>
      </p:menubar>
    </h:form>

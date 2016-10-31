@@ -1,0 +1,45 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+  <ui:composition template="/page/template/layout.xhtml">
+    <ui:define name="menu" />
+    
+    <ui:define name="page-title">
+      <p:panel class="page-title">
+          <b>Login</b>
+      </p:panel>
+    </ui:define>
+    
+    <ui:define name="content">
+        <h:form>            
+            <p:spacer height="10" />
+            
+            <h:panelGrid id="user-login-grid" columns="2" cellpadding="5">
+                <f:facet name="header">
+                    <p:messages id="msgs" />
+                </f:facet>
+ 
+                <h:outputText for="username" class="bold-label" value="#{msgs['user.username']}: *" />
+                <p:inputText id="username" value="#{loginBean.username}" required="true" requiredMessage="Username is required." />
+                
+                <h:outputLabel class="bold-label" value="#{msgs['user.password']}: *" />
+                <p:password value="#{loginBean.password}" required="true" requiredMessage="Password is required." />
+            </h:panelGrid>           
+                
+            <p:separator />
+                 
+            <p:spacer height="10" />
+            <br /><br />
+            <p:commandButton id="btnAll" process="@form" update="user-login-grid" action="#{loginBean.login}" value="Login" icon="ui-icon-check" />
+        </h:form>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>
