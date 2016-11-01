@@ -40,13 +40,6 @@ public class User {
         country = "Bulgaria";
     }
 
-    public User(String firstName, String lastName, String email, String country) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.country = country;
-    }
-
     public String getFirstName() {
         return firstName;
     }
