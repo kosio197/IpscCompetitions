@@ -17,6 +17,7 @@ public class User {
     private String shootingClub;
     private String email;
     private String country;
+    private String telephone;
 
     private Cathegory cathegory;
 
@@ -171,5 +172,13 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 }
