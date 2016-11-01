@@ -14,18 +14,22 @@ public enum RiffleDevision {
     }
 
     public static RiffleDevision fromValue(String value) {
-        switch (value) {
-            case "Semi-auto Standard":
-                return SAS;
-            case "Semi-auto Open":
-                return SAO;
-            case "Manual Action Standard":
-                return MAS;
-            case "Manual Action Open":
-                return MAO;
-
-            default:
-                throw new RuntimeException("Invalid riffle devision!");
+        if (value.equals("Semi-auto Standard")) {
+            return SAS;
         }
+
+        if (value.equals("Semi-auto Open")) {
+            return SAO;
+        }
+
+        if (value.equals("Manual Action Standard")) {
+            return MAS;
+        }
+
+        if (value.equals("Manual Action Open")) {
+            return MAO;
+        }
+
+        throw new RuntimeException("Invalid riffle devision!");
     }
 }

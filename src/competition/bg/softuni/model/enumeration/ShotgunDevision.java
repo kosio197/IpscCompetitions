@@ -14,18 +14,22 @@ public enum ShotgunDevision {
     }
 
     public static ShotgunDevision fromValue(String value) {
-        switch (value) {
-            case "Standard Manual":
-                return STM;
-            case "Standard":
-                return STD;
-            case "Open":
-                return OPN;
-            case "Modified":
-                return MOD;
-
-            default:
-                throw new RuntimeException("Invalid shotgun devision!");
+        if (value.equals("Standard Manual")) {
+            return STM;
         }
+
+        if (value.equals("Standard")) {
+            return STD;
+        }
+
+        if (value.equals("Open")) {
+            return OPN;
+        }
+
+        if (value.equals("Modified")) {
+            return MOD;
+        }
+
+        throw new RuntimeException("Invalid shotgun devision!");
     }
 }

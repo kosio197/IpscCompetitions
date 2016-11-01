@@ -27,7 +27,7 @@
                      </p:column>
 
                      <p:column headerText="#{msgs['label.devision']}">
-                         <h:outputText value="#{competitor.usedevision}" />
+                         <h:outputText value="test" />
                      </p:column>
 
                      <p:column headerText="#{msgs['label.cathegory']}">
@@ -48,7 +48,7 @@
                     </p:column>
 
                     <p:column headerText="#{msgs['label.devision']}">
-                        <h:outputText value="#{competitor.devision}" />
+                        <h:outputText value="test" />
                     </p:column>
 
                     <p:column headerText="#{msgs['label.cathegory']}">
@@ -71,13 +71,13 @@
                   <h:outputText value="#{competition.address}" />
 
                    <h:outputText value="#{msgs['label.club']}:" style="font-weight: bold" />
-                   <h:outputText value="#{competition.club}" />
+                   <h:outputText value="#{competition.createdBy.username}" />
 
                    <h:outputText value="#{msgs['label.min-rounds']}:" style="font-weight: bold" />
-                   <h:outputText value="#{competition.minRounds}" />
+                   <h:outputText value="test" />
 
                    <h:outputText value="#{msgs['label.stages']}:" style="font-weight: bold" />
-                   <h:outputText value="#{competition.stagesCount}" />
+                   <h:outputText value="test" />
 
                    <h:outputText value="#{msgs['label.entry-fee']}:" style="font-weight: bold" />
                    <h:outputText value="#{competition.fee} #{competition.feeCurrency}" />
@@ -117,11 +117,11 @@
                      </p:column>
 
                      <p:column headerText="#{msgs['label.devision']}">
-                         <h:outputText value="#{competitor.devision}" />
+                         <h:outputText value="test" />
                      </p:column>
 
                      <p:column headerText="#{msgs['label.cathegory']}">
-                         <h:outputText value="#{competitor.cathegory}" />
+                         <h:outputText value="#{competitor.user.cathegory}" />
                      </p:column>
                     </p:dataTable>
                 </p:overlayPanel>
@@ -138,11 +138,11 @@
                     </p:column>
 
                     <p:column headerText="#{msgs['label.devision']}">
-                        <h:outputText value="#{competitor.devision}" />
+                        <h:outputText value="#{competitor.user.defaultHandgunDevision}" />
                     </p:column>
 
                     <p:column headerText="#{msgs['label.cathegory']}">
-                        <h:outputText value="#{competitor.cathegory}" />
+                        <h:outputText value="#{competitor.user.cathegory}" />
                     </p:column>
                  </p:dataTable>
                 </p:overlayPanel>
@@ -160,13 +160,13 @@
                   <h:outputText value="#{competition.address}" />
 
                    <h:outputText value="#{msgs['label.club']}:" style="font-weight: bold" />
-                   <h:outputText value="#{competition.club}" />
+                   <h:outputText value="test" />
 
                    <h:outputText value="#{msgs['label.min-rounds']}:" style="font-weight: bold" />
-                   <h:outputText value="#{competition.minRounds}" />
+                   <h:outputText value="test" />
 
                    <h:outputText value="#{msgs['label.stages']}:" style="font-weight: bold" />
-                   <h:outputText value="#{competition.stagesCount}" />
+                   <h:outputText value="test" />
 
                    <h:outputText value="#{msgs['label.entry-fee']}:" style="font-weight: bold" />
                    <h:outputText value="#{competition.fee} #{competition.feeCurrency}" />

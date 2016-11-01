@@ -14,20 +14,26 @@ public enum Cathegory {
     }
 
     public static Cathegory fromValue(String value) {
-        switch (value) {
-            case "Regular":
-                return REGULAR;
-            case "Junior (till 21 years)":
-                return JUNIOR;
-            case "Lady":
-                return LADY;
-            case "Senior (over 50 years)":
-                return SENIOR;
-            case "Super Senior (over 60 years)":
-                return SSENIOR;
-
-            default:
-                throw new RuntimeException("Invalid cathegory!");
+        if (value.equals("Regular")) {
+            return REGULAR;
         }
+
+        if (value.equals("Junior (till 21 years)")) {
+            return JUNIOR;
+        }
+
+        if (value.equals("Lady")) {
+            return LADY;
+        }
+
+        if (value.equals("Senior (over 50 years)")) {
+            return SENIOR;
+        }
+
+        if (value.equals("Super Senior (over 60 years)")) {
+            return SSENIOR;
+        }
+
+        throw new RuntimeException("Invalid cathegory!");
     }
 }

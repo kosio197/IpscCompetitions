@@ -1,110 +1,137 @@
 package competition.bg.softuni.model.competition;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import competition.bg.softuni.model.enumeration.Discipline;
+import competition.bg.softuni.model.user.User;
 
 public class Competition {
-	private String name;
-	private int level;
-	private String address;
-	private String club;
-	private String discipline;
-	private Date matchDate;
-	private int minRounds;
-	private int stagesCount;
-	private double fee;
-	private String feeCurrency;
-	
-	public Competition(String name, int level, String address, String club, String discipline, Date matchDate,
-			int minRounds, int stagesCount, double fee, String feeCurrency) {
-		this.name = name;
-		this.level = level;
-		this.address = address;
-		this.club = club;
-		this.discipline = discipline;
-		this.matchDate = matchDate;
-		this.minRounds = minRounds;
-		this.stagesCount = stagesCount;
-		this.fee = fee;
-		this.feeCurrency = feeCurrency;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public int getLevel() {
-		return level;
-	}
-	
-	public void setLevel(int level) {
-		this.level = level;
-	}
-	
-	public String getAddress() {
-		return address;
-	}
-	
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	
-	public String getClub() {
-		return club;
-	}
-	
-	public void setClub(String club) {
-		this.club = club;
-	}
-	
-	public String getDiscipline() {
-		return discipline;
-	}
-	
-	public void setDiscipline(String discipline) {
-		this.discipline = discipline;
-	}
-	
-	public Date getMatchDate() {
-		return matchDate;
-	}
-	
-	public void setMatchDate(Date matchDate) {
-		this.matchDate = matchDate;
-	}
-	
-	public int getMinRounds() {
-		return minRounds;
-	}
-	
-	public void setMinRounds(int minRounds) {
-		this.minRounds = minRounds;
-	}
-	
-	public int getStagesCount() {
-		return stagesCount;
-	}
-	
-	public void setStagesCount(int stagesCount) {
-		this.stagesCount = stagesCount;
-	}
-	
-	public double getFee() {
-		return fee;
-	}
-	
-	public void setFee(double fee) {
-		this.fee = fee;
-	}
-	
-	public String getFeeCurrency() {
-		return feeCurrency;
-	}
-	
-	public void setFeeCurrency(String feeCurrency) {
-		this.feeCurrency = feeCurrency;
-	} 
+    private String name;
+    private String address;
+    private String feeCurrency;
+    private String description;
+
+    private Date matchDate;
+    private Date prematchDate;
+    private Date registrationDeadline;
+    private Date paymentDeadline;
+
+    private int level;
+    private double fee;
+
+    private Discipline discipline;
+
+    private List<Stage> stages;
+
+    private User createdBy;
+
+    public Competition() {
+        stages = new ArrayList<Stage>();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Date getMatchDate() {
+        return matchDate;
+    }
+
+    public void setMatchDate(Date matchDate) {
+        this.matchDate = matchDate;
+    }
+
+    public double getFee() {
+        return fee;
+    }
+
+    public void setFee(double fee) {
+        this.fee = fee;
+    }
+
+    public String getFeeCurrency() {
+        return feeCurrency;
+    }
+
+    public void setFeeCurrency(String feeCurrency) {
+        this.feeCurrency = feeCurrency;
+    }
+
+    public Date getPrematchDate() {
+        return prematchDate;
+    }
+
+    public void setPrematchDate(Date prematchDate) {
+        this.prematchDate = prematchDate;
+    }
+
+    public Date getRegistrationDeadline() {
+        return registrationDeadline;
+    }
+
+    public void setRegistrationDeadline(Date registrationDeadline) {
+        this.registrationDeadline = registrationDeadline;
+    }
+
+    public Date getPaymentDeadline() {
+        return paymentDeadline;
+    }
+
+    public void setPaymentDeadline(Date paymentDeadline) {
+        this.paymentDeadline = paymentDeadline;
+    }
+
+    public Discipline getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(Discipline discipline) {
+        this.discipline = discipline;
+    }
+
+    public List<Stage> getStages() {
+        return stages;
+    }
+
+    public void setStages(List<Stage> stages) {
+        this.stages = stages;
+    }
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

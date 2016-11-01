@@ -14,20 +14,26 @@ public enum HandgunDevision {
     }
 
     public static HandgunDevision fromValue(String value) {
-        switch (value) {
-            case "Production":
-                return PRD;
-            case "Standard":
-                return STD;
-            case "Open":
-                return OPN;
-            case "Revolver":
-                return REV;
-            case "Classic":
-                return CLS;
-
-            default:
-                throw new RuntimeException("Invalid handgun devision!");
+        if (value.equals("Production")) {
+            return PRD;
         }
+
+        if (value.equals("Standard")) {
+            return STD;
+        }
+
+        if (value.equals("Open")) {
+            return OPN;
+        }
+
+        if (value.equals("Revolver")) {
+            return REV;
+        }
+
+        if (value.equals("Classic")) {
+            return CLS;
+        }
+
+        throw new RuntimeException("Invalid handgun devision!");
     }
 }

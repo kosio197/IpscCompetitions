@@ -14,14 +14,14 @@ public enum PowerFactor {
     }
 
     public static PowerFactor fromValue(String value) {
-        switch (value) {
-            case "Minor":
-                return MIN;
-            case "Major":
-                return MAJ;
-
-            default:
-                throw new RuntimeException("Invalid power factor!");
+        if (value.equals("Minor")) {
+            return MIN;
         }
+
+        if (value.equals("Major")) {
+            return MAJ;
+        }
+
+        throw new RuntimeException("Invalid power factor!");
     }
 }

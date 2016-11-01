@@ -4,6 +4,7 @@ import competition.bg.softuni.model.enumeration.Cathegory;
 import competition.bg.softuni.model.enumeration.HandgunDevision;
 import competition.bg.softuni.model.enumeration.PowerFactor;
 import competition.bg.softuni.model.enumeration.RiffleDevision;
+import competition.bg.softuni.model.enumeration.Role;
 import competition.bg.softuni.model.enumeration.ShotgunDevision;
 
 public class User {
@@ -27,10 +28,12 @@ public class User {
 
     private ShotgunDevision defaultShotgunDevision;
 
+    private Role role;
+
     public User() {
-        defaultHandgunDevision = HandgunDevision.NONE;
-        defaultShotgunDevision = ShotgunDevision.NONE;
-        defaultRiffleDevision = RiffleDevision.NONE;
+        defaultHandgunDevision = HandgunDevision.PRD;
+        defaultShotgunDevision = ShotgunDevision.MOD;
+        defaultRiffleDevision = RiffleDevision.MAO;
 
         defaultHandgunPowerFactor = PowerFactor.MIN;
         defaultRifflePowerFactor = PowerFactor.MIN;
@@ -38,6 +41,8 @@ public class User {
         cathegory = Cathegory.REGULAR;
 
         country = "Bulgaria";
+
+        role = Role.USER;
     }
 
     public String getFirstName() {
@@ -158,5 +163,13 @@ public class User {
 
     public void setShootingClub(String shootingClub) {
         this.shootingClub = shootingClub;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

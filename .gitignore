@@ -16,4 +16,4 @@ bin
 .settings/
 /target/
 .tern-project
-
+classes/
