@@ -1,97 +1,169 @@
 package competition.bg.softuni.model.user;
 
+import competition.bg.softuni.model.enumeration.Cathegory;
+import competition.bg.softuni.model.enumeration.HandgunDevision;
+import competition.bg.softuni.model.enumeration.PowerFactor;
+import competition.bg.softuni.model.enumeration.RiffleDevision;
+import competition.bg.softuni.model.enumeration.ShotgunDevision;
+
 public class User {
-	private String username;
-	private String password;
-	private String firstName;
-	private String middleName;
-	private String lastName;
-	private String email;
-	private String country;
-	private String cathegory;
-	private String defaultDevision;
-	
-	public User() {
-		defaultDevision="PRD";
-		cathegory="PRD";
-	}
-	
-	public User(String firstName, String lastName, String email, String country) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.country = country;
-	}
+    private String username;
+    private String password;
+    private String firstName;
+    private String middleName;
+    private String lastName;
+    private String alias;
+    private String shootingClub;
+    private String email;
+    private String country;
 
-	public String getFirstName() {
-		return firstName;
-	}
-	
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	
-	public String getLastName() {
-		return lastName;
-	}
-	
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	
-	public String getEmail() {
-		return email;
-	}
-	
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    private Cathegory cathegory;
 
-	public String getCountry() {
-		return country;
-	}
+    private HandgunDevision defaultHandgunDevision;
+    private PowerFactor defaultHandgunPowerFactor;
 
-	public void setCountry(String country) {
-		this.country = country;
-	}
+    private RiffleDevision defaultRiffleDevision;
+    private PowerFactor defaultRifflePowerFactor;
 
-	public String getCathegory() {
-		return cathegory;
-	}
+    private ShotgunDevision defaultShotgunDevision;
 
-	public void setCathegory(String cathegory) {
-		this.cathegory = cathegory;
-	}
+    public User() {
+        defaultHandgunDevision = HandgunDevision.NONE;
+        defaultShotgunDevision = ShotgunDevision.NONE;
+        defaultRiffleDevision = RiffleDevision.NONE;
 
-	public String getDefaultDevision() {
-		return defaultDevision;
-	}
+        defaultHandgunPowerFactor = PowerFactor.MIN;
+        defaultRifflePowerFactor = PowerFactor.MIN;
 
-	public void setDefaultDevision(String defaultDevision) {
-		this.defaultDevision = defaultDevision;
-	}
+        cathegory = Cathegory.REGULAR;
 
-	public String getMiddleName() {
-		return middleName;
-	}
+        country = "Bulgaria";
+    }
 
-	public void setMiddleName(String middleName) {
-		this.middleName = middleName;
-	}
+    public User(String firstName, String lastName, String email, String country) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.country = country;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public ShotgunDevision getDefaultShotgunDevision() {
+        return defaultShotgunDevision;
+    }
+
+    public void setDefaultShotgunDevision(ShotgunDevision defaultShotgunDevision) {
+        this.defaultShotgunDevision = defaultShotgunDevision;
+    }
+
+    public RiffleDevision getDefaultRiffleDevision() {
+        return defaultRiffleDevision;
+    }
+
+    public void setDefaultRiffleDevision(RiffleDevision defaultRiffleDevision) {
+        this.defaultRiffleDevision = defaultRiffleDevision;
+    }
+
+    public PowerFactor getDefaultHandgunPowerFactor() {
+        return defaultHandgunPowerFactor;
+    }
+
+    public void setDefaultHandgunPowerFactor(PowerFactor defaultHandgunPowerFactor) {
+        this.defaultHandgunPowerFactor = defaultHandgunPowerFactor;
+    }
+
+    public PowerFactor getDefaultRifflePowerFactor() {
+        return defaultRifflePowerFactor;
+    }
+
+    public void setDefaultRifflePowerFactor(PowerFactor defaultRifflePowerFactor) {
+        this.defaultRifflePowerFactor = defaultRifflePowerFactor;
+    }
+
+    public HandgunDevision getDefaultHandgunDevision() {
+        return defaultHandgunDevision;
+    }
+
+    public void setDefaultHandgunDevision(HandgunDevision defaultHandgunDevision) {
+        this.defaultHandgunDevision = defaultHandgunDevision;
+    }
+
+    public Cathegory getCathegory() {
+        return cathegory;
+    }
+
+    public void setCathegory(Cathegory cathegory) {
+        this.cathegory = cathegory;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+
+    public String getShootingClub() {
+        return shootingClub;
+    }
+
+    public void setShootingClub(String shootingClub) {
+        this.shootingClub = shootingClub;
+    }
 }
