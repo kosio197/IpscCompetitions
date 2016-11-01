@@ -1,7 +1,7 @@
 package competition.bg.softuni.model.enumeration;
 
 public enum ShotgunDevision {
-    NONE("None"), STM("Standard Manual"), STD("Standard"), OPN("Open"), MOD("Modified");
+    STM("Standard Manual"), STD("Standard"), OPN("Open"), MOD("Modified");
 
     private String value;
 
@@ -15,8 +15,6 @@ public enum ShotgunDevision {
 
     public static ShotgunDevision fromValue(String value) {
         switch (value) {
-            case "None":
-                return NONE;
             case "Standard Manual":
                 return STM;
             case "Standard":

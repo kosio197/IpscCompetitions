@@ -1,7 +1,7 @@
 package competition.bg.softuni.model.enumeration;
 
 public enum RiffleDevision {
-    NONE("None"), SAS("Semi-auto Standard"), SAO("Semi-auto Open"), MAS("Manual Action Standard"), MAO("Manual Action Open");
+    SAS("Semi-auto Standard"), SAO("Semi-auto Open"), MAS("Manual Action Standard"), MAO("Manual Action Open");
 
     private String value;
 
@@ -15,8 +15,6 @@ public enum RiffleDevision {
 
     public static RiffleDevision fromValue(String value) {
         switch (value) {
-            case "None":
-                return NONE;
             case "Semi-auto Standard":
                 return SAS;
             case "Semi-auto Open":

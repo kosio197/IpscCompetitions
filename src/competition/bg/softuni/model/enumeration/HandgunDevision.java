@@ -1,7 +1,7 @@
 package competition.bg.softuni.model.enumeration;
 
 public enum HandgunDevision {
-    NONE("None"), PRD("Production"), STD("Standard"), OPN("Open"), REV("Revolver"), CLS("Classic");
+    PRD("Production"), STD("Standard"), OPN("Open"), REV("Revolver"), CLS("Classic");
 
     private String value;
 
@@ -15,8 +15,6 @@ public enum HandgunDevision {
 
     public static HandgunDevision fromValue(String value) {
         switch (value) {
-            case "None":
-                return NONE;
             case "Production":
                 return PRD;
             case "Standard":
