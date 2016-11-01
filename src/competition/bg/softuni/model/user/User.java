@@ -1,6 +1,6 @@
 package competition.bg.softuni.model.user;
 
-import competition.bg.softuni.model.enumeration.Cathegory;
+import competition.bg.softuni.model.enumeration.Category;
 import competition.bg.softuni.model.enumeration.HandgunDevision;
 import competition.bg.softuni.model.enumeration.PowerFactor;
 import competition.bg.softuni.model.enumeration.RiffleDevision;
@@ -19,7 +19,7 @@ public class User {
     private String country;
     private String telephone;
 
-    private Cathegory cathegory;
+    private Category category;
 
     private HandgunDevision defaultHandgunDevision;
     private PowerFactor defaultHandgunPowerFactor;
@@ -39,7 +39,7 @@ public class User {
         defaultHandgunPowerFactor = PowerFactor.MIN;
         defaultRifflePowerFactor = PowerFactor.MIN;
 
-        cathegory = Cathegory.REGULAR;
+        category = Category.REGULAR;
 
         country = "Bulgaria";
 
@@ -142,12 +142,12 @@ public class User {
         this.defaultHandgunDevision = defaultHandgunDevision;
     }
 
-    public Cathegory getCathegory() {
-        return cathegory;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCathegory(Cathegory cathegory) {
-        this.cathegory = cathegory;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public String getAlias() {
