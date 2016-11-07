@@ -47,6 +47,9 @@
                 <h:outputText class="bold-label" value="#{msgs['user.lastname']}: *" />
                 <p:inputText id="lastname" value="#{userBean.user.lastName}" required="true" requiredMessage="Last name is required." />
                 
+                <h:outputText class="bold-label" value="#{msgs['user.shootingClub']}: *" />
+                <p:inputText id="shootingClub" value="#{userBean.user.shootingClub}" required="true" requiredMessage="Shooting club is required." />
+                
                 <h:outputText class="bold-label" for="country" value="Country: *" />
                 <p:selectOneMenu id="country" value="#{countriesBean.defaultCountry}" style="width:150px">
                     <f:selectItems value="#{countriesBean.countries}" />
@@ -57,7 +60,7 @@
 		 
 		    <p:separator />
                 
-	        <p:selectOneRadio id="default-devision" layout="custom" value="test" >
+	        <p:selectOneRadio id="default-devision" layout="custom" value="PRD" >
 	            <f:selectItem itemLabel="Production" itemValue="PRD" />
 	            <f:selectItem itemLabel="Standart" itemValue="STD" />
 	            <f:selectItem itemLabel="Open" itemValue="OPEN" />
@@ -86,11 +89,11 @@
             <br /> <br />
                 
             <p:selectOneRadio id="category" layout="custom" value="#{userBean.user.category}">
-                <f:selectItem itemLabel="Regular" itemValue="PRD" />
-                <f:selectItem itemLabel="Lady" itemValue="STD" />
-                <f:selectItem itemLabel="Junior" itemValue="OPEN" />
-                <f:selectItem itemLabel="Sinior" itemValue="REV" />
-                <f:selectItem itemLabel="Super Sinior" itemValue="CLASSIC" />
+                <f:selectItem itemLabel="Regular" itemValue="REGULAR" />
+                <f:selectItem itemLabel="Lady" itemValue="LADY" />
+                <f:selectItem itemLabel="Junior" itemValue="JUNIOR" />
+                <f:selectItem itemLabel="Sinior" itemValue="SENIOR" />
+                <f:selectItem itemLabel="Super Sinior" itemValue="SSENIOR" />
             </p:selectOneRadio>
 
             &nbsp;&nbsp;

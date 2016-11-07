@@ -1,3 +1,5 @@
+
+
 CREATE DATABASE ipsc_competitions;
 USE ipsc_competitions;
 
@@ -43,45 +45,45 @@ name VARCHAR(50) UNIQUE NOT NULL
 CREATE TABLE powerfactors
 (
 id INT AUTO_INCREMENT PRIMARY KEY,
-name ENUM ('MINOR', 'MAJOR') UNIQUE NOT NULL
+name ENUM ('MIN', 'MAJ') UNIQUE NOT NULL
 );
-INSERT INTO powerfactors (name) VALUES ('MINOR'),('MAJOR');
+INSERT INTO powerfactors (name) VALUES ('MIN'),('MAJ');
 
 -- ***************************************************************************************************
 CREATE TABLE handgun_divisions
 (
 id INT AUTO_INCREMENT PRIMARY KEY,
-name ENUM ('PRODUCTION', 'STANDART', 'CLASSIC', 'OPEN', 'REVOLVER'),
+name ENUM ('PRD', 'STD', 'CLS', 'OPN', 'REV'),
 powerfactor_id INT NOT NULL,
 CONSTRAINT fk_handgun_divisions_powerfactors FOREIGN KEY (powerfactor_id) REFERENCES powerfactors (id),
 UNIQUE KEY handgun_division_name_pf (name, powerfactor_id)
 );
 INSERT INTO handgun_divisions (name, powerfactor_id) 
-      VALUES ('PRODUCTION', 1), ('STANDART', 1),('STANDART', 2),
-             ('CLASSIC', 1),('CLASSIC', 2), ('OPEN',1), ('OPEN',2),('REVOLVER',1), ('REVOLVER',2);
+      VALUES ('PRD', 1), ('STD', 1),('STD', 2),
+             ('CLS', 1),('CLS', 2), ('OPN',1), ('OPN',2),('REV',1), ('REV',2);
 
 CREATE TABLE shotgun_divisions
 (
 id INT AUTO_INCREMENT PRIMARY KEY,
-name ENUM ('STANDART MANUAL','STANDART', 'MODIFIED', 'OPEN'),
+name ENUM ('STM','STD', 'MOD', 'OPN'),
 powerfactor_id INT,
 CONSTRAINT fk_shotgun_divisions_powerfactors FOREIGN KEY (powerfactor_id) REFERENCES powerfactors (id),
 UNIQUE KEY shotgun_division_name_pf (name, powerfactor_id)
 );
 INSERT INTO shotgun_divisions  (name) 
-    VALUES ('STANDART MANUAL'), ('STANDART'), ('MODIFIED'), ('OPEN');
+    VALUES ('STM'), ('STD'), ('MOD'), ('OPN');
 
 CREATE TABLE rifle_divisions
 (
 id INT AUTO_INCREMENT PRIMARY KEY,
-name ENUM ('SEMI-AUTO STANDART','SEMI-AUTO OPEN', 'MANUAL ACTION STANDART', 'MANUAL ACTION OPEN'),
+name ENUM ('SAS','SAO', 'MAS', 'MAO'),
 powerfactor_id INT NOT NULL,
 CONSTRAINT fk_rifle_divisions_powerfactors FOREIGN KEY (powerfactor_id) REFERENCES powerfactors (id),
 UNIQUE KEY riffle_division_name_pf (name, powerfactor_id)
 );
 INSERT INTO rifle_divisions  (name, powerfactor_id) 
-   VALUES ('SEMI-AUTO STANDART',1), ('SEMI-AUTO OPEN',1), ('MANUAL ACTION STANDART',1), ('MANUAL ACTION OPEN',1),
-          ('SEMI-AUTO STANDART',2), ('SEMI-AUTO OPEN',2), ('MANUAL ACTION STANDART',2), ('MANUAL ACTION OPEN',2);
+   VALUES ('SAS',1), ('SAO',1), ('MAS',1), ('MAO',1),
+          ('SAS',2), ('SAO',2), ('MAS',2), ('MAO',2);
 
 -- *************************************************************************************************
 
@@ -89,18 +91,18 @@ INSERT INTO rifle_divisions  (name, powerfactor_id)
 CREATE TABLE categories
 (
 id INT AUTO_INCREMENT PRIMARY KEY,
-name ENUM ('REGULAR', 'JUNIOR', 'LADY', 'SENIOR', 'SUPER SENIOR') UNIQUE NOT NULL
+name ENUM ('REGULAR', 'JUNIOR', 'LADY', 'SENIOR', 'SSENIOR') UNIQUE NOT NULL
 );
-INSERT INTO categories (name) VALUES ('REGULAR'),('JUNIOR'),('LADY'),('SENIOR'),('SUPER SENIOR');
+INSERT INTO categories (name) VALUES ('REGULAR'),('JUNIOR'),('LADY'),('SENIOR'),('SSENIOR');
 
 -- ****************************************************************************************************
 
 CREATE TABLE currencies
 (
 id INT AUTO_INCREMENT PRIMARY KEY,
-name ENUM ('BGN', 'EUR') UNIQUE NOT NULL
+name ENUM ('BGN', 'EUR', 'USD') UNIQUE NOT NULL
 );
-INSERT INTO currencies (name) VALUES ('BGN'), ('EUR');
+INSERT INTO currencies (name) VALUES ('BGN'), ('EUR'), ('USD');
 
 -- ****************************************************************************************************
 
