@@ -21,10 +21,10 @@ id INT AUTO_INCREMENT PRIMARY KEY,
 name VARCHAR(50) UNIQUE NOT NULL,
 img_flag BLOB
 );
-INSERT INTO countries (name) VALUES ('Namibia'), ('South'), ('Africa'), ('Zimbabwe'), ('Australia'), ('Cambodia'), ('China'), ('Guam'), 
+INSERT INTO countries (name) VALUES  ('Bulgaria'), ('Namibia'), ('South'), ('Africa'), ('Zimbabwe'), ('Australia'), ('Cambodia'), ('China'), ('Guam'), 
 ('Hong Kong'), ('Indonesia'), ('Japan'), ('Kuwait'), ('Laos'), ('Macau'), ('Malaysia'), ('Mongolia'), ('New Zealand'), ('Papua New Guinea'), 
 ('Philippines'), ('Singapore'), ('Sri Lanka'), ('Taiwan'), ('Thailand'), ('Andorra'), ('Armenia'), ('Austria'), 
-('Belarus'), ('Belgium'), ('Bosnia and Herzegovina'), ('Bulgaria'), ('Channel Islands'), ('Croatia'), ('Cyprus'), ('Czech Republic'), 
+('Belarus'), ('Belgium'), ('Bosnia and Herzegovina'),('Channel Islands'), ('Croatia'), ('Cyprus'), ('Czech Republic'), 
 ('Denmark'), ('Estonia'), ('Finland'), ('France'), ('Germany'), ('Gibraltar'), ('Greece'), ('Hungary'), ('Ireland'), ('Isle of Man'),
 ('Israel'), ('Italy'), ('Kazakhstan'), ('Kyrgyzstan'), ('Latvia'), ('Lithuania'), ('Malta'), ('Moldova'), ('Monaco'), 
 ('Montenegro'), ('Netherlands'), ('Northern Ireland'), ('Norway'), ('Poland'), ('Portugal'), ('Romania'), ('Russia'), ('Serbia'), 
@@ -40,6 +40,7 @@ CREATE TABLE clubs
 id INT AUTO_INCREMENT PRIMARY KEY,
 name VARCHAR(50) UNIQUE NOT NULL
 );
+insert into clubs values(1,'Levski');
 -- *************************************************************************************************
 
 CREATE TABLE powerfactors
@@ -132,7 +133,15 @@ CONSTRAINT fk_users_handgun_division FOREIGN KEY (handgun_division_id) REFERENCE
 CONSTRAINT fk_users_shoting_division FOREIGN KEY (shoting_division_id) REFERENCES shotgun_divisions (id),
 CONSTRAINT fk_users_rifle_division FOREIGN KEY (rifle_division_id) REFERENCES rifle_divisions (id)
 );
+insert into users values(1,'Konstantin', 'Mihaylov', 'Petrov', 'kosio', 'kosio197', 'cz', 'kosio197@abv.bg', '0895 60 66 20', 1, 1, 1,1,1,1,1);
 
+-- ***************************************************************************************************
+
+CREATE TABLE disciplines(
+id INT AUTO_INCREMENT PRIMARY KEY,
+name enum('HANDGUN', 'SHOTGUN', 'RIFLE')
+);
+INSERT INTO disciplines VALUES(1, 'HANDGUN'), (2, 'SHOTGUN'), (3, 'RIFLE');
 
 -- ***************************************************************************************************
 
@@ -140,17 +149,22 @@ CREATE TABLE competitions
 (
 id INT AUTO_INCREMENT PRIMARY KEY,
 name VARCHAR(200) NOT NULL,
+address VARCHAR(200) NOT NULL,
 date_pre_match DATE,
 date_main_match DATE NOT NULL,
 date_registry_deadline DATE,
 date_payment_deadline DATE,
 entry_fee DECIMAL NOT NULL,
+min_rounds INT NOT NULL,
+stage_count INT NOT NULL,
 currency_id INT NOT NULL,
 match_level INT NOT NULL,
 description TEXT,
 created_by INT NOT NULL,
+discipline_id INT,
 CONSTRAINT fk_competitions_currencies FOREIGN KEY (currency_id) REFERENCES currencies (id),
-CONSTRAINT fk_competitions_users FOREIGN KEY (created_by) REFERENCES users (id)
+CONSTRAINT fk_competitions_users FOREIGN KEY (created_by) REFERENCES users (id),
+CONSTRAINT fk_competitions_disciplines FOREIGN KEY (discipline_id) REFERENCES disciplines (id)
 );
 
 -- ****************************************************************************************************
