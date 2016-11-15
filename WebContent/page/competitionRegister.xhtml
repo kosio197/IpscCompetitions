@@ -1,0 +1,89 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+  <ui:composition template="/page/template/layout.xhtml">
+    <ui:define name="menu" />
+    
+    <ui:define name="page-title">
+      <p:panel class="page-title">
+          <b>Competition Registration Form</b>
+      </p:panel>
+    </ui:define>>
+    
+    <ui:define name="content">
+        <h:form>            
+            <p:spacer height="10" />
+            
+            <h:panelGrid id="competition-registration-grid" columns="2" cellpadding="5">
+                <f:facet name="header">
+                    <p:messages id="msgs" />
+                </f:facet>
+
+                <h:outputText for="competition-name" class="bold-label" value="#{msgs['competition.name']}: *" />
+                <p:inputText id="competition-name" value="#{ManageCompetitionBean.competition.name}" required="true" requiredMessage="#{msgs['competition.name.required']}" />
+
+                <h:outputText for="competition-address" class="bold-label" value="#{msgs['competition.address']}: *" />
+                <p:inputText id="competition-address" value="#{ManageCompetitionBean.competition.address}" required="true" requiredMessage="#{msgs['competition.address.required']}" />
+
+                <h:outputText class="bold-label" for="competition-level" value="#{msgs['competition.level']}: *" />
+                <p:selectOneMenu id="competition-level" value="#{ManageCompetitionBean.competition.level}" style="width:150px">
+                    <f:selectItem itemValue="1" itemLabel="1"/>
+                    <f:selectItem itemValue="2" itemLabel="2"/>
+                    <f:selectItem itemValue="3" itemLabel="3"/>
+                    <f:selectItem itemValue="4" itemLabel="4"/>
+                </p:selectOneMenu>
+                
+                <h:outputText class="bold-label" for="discipline" value="#{msgs['competition.discipline']}: *" />
+                <p:selectOneMenu id="discipline" value="#{ManageCompetitionBean.competition.discipline}" style="width:150px">
+                    <f:selectItem itemValue="HANDGUN" itemLabel="#{msgs['handgun']}"/>
+                    <f:selectItem itemValue="SHOTGUN" itemLabel="#{msgs['shotgun']}"/>
+                    <f:selectItem itemValue="RIFLE" itemLabel="#{msgs['rifle']}"/>
+                </p:selectOneMenu>
+                
+                <p:outputLabel for="competition-minRound" class="bold-label" value="#{msgs['competition.minRounds']}: *"  />
+                <p:inputNumber id="competition-minRound" value="#{ManageCompetitionBean.competition.minRound}" decimalPlaces="0" />  
+
+                <p:outputLabel for="competition-stageCount" class="bold-label" value="#{msgs['competition.stageCount']}: *"  />
+                <p:inputNumber id="competition-stageCount" value="#{ManageCompetitionBean.competition.stageCount}" decimalPlaces="0" />  
+                
+                <p:outputLabel for="competition-matchDate" class="bold-label" value="#{msgs['competition.matchDate']}: *"  />
+                <p:calendar id="competition-matchDate" value="#{ManageCompetitionBean.competition.matchDate}" mask="true" navigator="true" pattern="yyyy-MMM-dd" />
+                
+                <p:outputLabel for="competition-prematchDate" class="bold-label" value="#{msgs['competition.prematchDate']}: *"  />
+                <p:calendar id="competition-prematchDate" value="#{ManageCompetitionBean.competition.prematchDate}" mask="true" navigator="true" pattern="yyyy-MMM-dd" />
+
+                <p:outputLabel for="registrationDeadline" class="bold-label" value="#{msgs['competition.registrationDeadline']}: *"  />
+                <p:calendar id="registrationDeadline" value="#{ManageCompetitionBean.competition.registrationDeadline}" mask="true" navigator="true" pattern="yyyy-MMM-dd" />
+                
+                <p:outputLabel for="paymentDeadline" class="bold-label" value="#{msgs['competition.paymentDeadline']}: *"  />
+                <p:calendar id="paymentDeadline" value="#{ManageCompetitionBean.competition.paymentDeadline}" mask="true" navigator="true" pattern="yyyy-MMM-dd" />
+                
+                <h:outputText for="competition-entryFee" class="bold-label" value="#{msgs['competition.entryFee']}: *"  />
+                <p:inputText id="competition-entryFee" value="#{ManageCompetitionBean.competition.fee}" required="true" requiredMessage="#{msgs['competition.entryFee.required']}" />
+                
+                <h:outputText for="competition-feeCurrency" class="bold-label" value="#{msgs['competition.feeCurrency']}: *" />
+                <p:selectOneMenu id="competition-feeCurrency" value="#{ManageCompetitionBean.competition.feeCurrency}" style="width:150px">
+                    <f:selectItem itemValue="BGN" itemLabel="BGN"/>
+                    <f:selectItem itemValue="EUR" itemLabel="EUR"/>
+                    <f:selectItem itemValue="USD" itemLabel="USD"/>
+                </p:selectOneMenu>
+                
+                <h3>Description</h3>
+                <p:inputTextarea rows="6" cols="33" value="#{ManageCompetitionBean.competition.description}"/>
+           </h:panelGrid>
+
+            <p:spacer height="10" />
+            <br /><br />
+            <p:commandButton id="btnAll" process="@all" update="competition-registration-grid" action="#{ManageCompetitionBean.addNewCompetition}" value="Register" icon="ui-icon-check" />
+        </h:form>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

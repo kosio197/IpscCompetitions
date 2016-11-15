@@ -1,0 +1,95 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+  <ui:composition template="/page/template/layout.xhtml">
+    <ui:define name="menu" />
+
+    <ui:define name="page-title">
+      <p:panel class="page-title">
+          <b>Manage Users</b>
+      </p:panel>
+    </ui:define>>
+
+    <ui:define name="content">
+        <h:form id="form">
+          <p:growl id="msgs" showDetail="true"/>
+ 
+		    <p:dataTable id="user2" var="user" value="#{userBean.getAllUsers()}"   editable="true" editMode="cell" style="margin-bottom:20px" widgetVar="usersTable"
+		                 emptyMessage="No users found with given criteria">
+		 
+		        <f:facet name="header">
+		            <p:outputPanel>
+		                <h:outputText value="Search all fields:" />
+		                <p:inputText id="globalFilter" onkeyup="PF('usersTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+		            </p:outputPanel>
+		        </f:facet>
+		 
+		        <p:column filterBy="#{user.username}" headerText="Username" filterMatchMode="contains">
+		            <h:outputText value="#{user.username}" />
+		        </p:column>
+		        
+		        <p:column filterBy="#{user.firstName} #{user.lastName}" headerText="Full Name" filterMatchMode="contains">
+                    <h:outputText value="#{user.firstName} #{user.lastName}" />
+                </p:column>
+		 
+		         <p:column filterBy="#{user.email}" headerText="Email" filterMatchMode="contains">
+		            <h:outputText value="#{user.email}" />
+		        </p:column>
+		        
+		        <p:column filterBy="#{user.telephone}" headerText="Telephone" filterMatchMode="contains">
+                    <h:outputText value="#{user.telephone}" />
+                </p:column>
+
+		        <p:column filterBy="#{user.shootingClub}" headerText="Shooting Club" filterMatchMode="contains">
+                    <h:outputText value="#{user.shootingClub}" />
+                </p:column>
+		
+		        <p:column filterBy="#{user.getDefaultHandgunDevisionAsString()}" filterMatchMode="in">
+		            <f:facet name="filter">
+		                <p:selectCheckboxMenu label="Handgun Devision" onchange="PF('usersTable').filter()" panelStyle="width:125px" scrollHeight="150">
+		                    <f:selectItems value="#{devisionBean.handgunDevisions}" />
+		                </p:selectCheckboxMenu>
+		            </f:facet>
+		            <h:outputText value="#{user.getDefaultHandgunDevisionAsString()}" />
+		        </p:column>
+	
+                <p:column filterBy="#{user.categoryAsString}" filterMatchMode="in">
+                    <f:facet name="filter">
+                        <p:selectCheckboxMenu label="Category" onchange="PF('usersTable').filter()" panelStyle="width:125px" scrollHeight="150">
+                            <f:selectItems value="#{userBean.categories}" />
+                        </p:selectCheckboxMenu>
+                    </f:facet>
+                    <h:outputText value="#{user.categoryAsString}" />
+                </p:column>
+	
+		        <!-- #{userBean.onCellEdit}  -->
+				  <p:ajax event="cellEdit" listener="#{userBean.myListener(user)}" update=":form:msgs" /> 
+		        <p:column headerText="Role">
+				  <p:cellEditor>
+				       <f:facet name="output"><h:outputText value="#{user.roleAsString}" /></f:facet>
+				       <f:facet name="input">
+		                   <h:selectOneMenu value="#{user.roleAsString}" style="width:100%">
+		                       <f:selectItems value="#{userBean.allRoles}" var="role" itemLabel="#{role.toString()}" itemValue="#{role.toString()}" />
+		                   </h:selectOneMenu>
+		               </f:facet>
+				  </p:cellEditor>
+				</p:column>
+		   
+		  </p:dataTable>		  
+   <p:contextMenu for="user2" widgetVar="cMenu">   
+       <p:menuitem value="Edit Cell" icon="ui-icon-search" onclick="PF('cellCars').showCellEditor();return false;"/>  
+       <p:menuitem value="Hide Menu" icon="ui-icon-close" onclick="PF('cMenu').hide()"/>  
+   </p:contextMenu> 
+		  
+        </h:form>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

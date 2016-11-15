@@ -1,4 +1,4 @@
-package competition.bg.softuni.bean.user;
+package bg.softuni.bean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,11 +7,11 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
-import competition.bg.softuni.model.user.RegisteredCompetitor;
+import bg.softuni.model.user.RegisteredCompetitor;
 
-@ManagedBean(name = "RegisteredCompetitors")
+@ManagedBean(name = "RegisteredCompetitorsBean")
 @ApplicationScoped
-public class RegisteredCompetitors {
+public class RegisteredCompetitorsBean {
     private List<RegisteredCompetitor> competitors;
 
     @PostConstruct
