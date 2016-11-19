@@ -1,4 +1,6 @@
-
+DROP DATABASE ipsc_competitions;
+DROP USER 'ipsc';
+flush privileges;
 
 CREATE DATABASE ipsc_competitions;
 USE ipsc_competitions;
@@ -115,7 +117,7 @@ midle_name VARCHAR(20),
 last_name VARCHAR(20) NOT NULL,
 username VARCHAR(50) UNIQUE NOT NULL,
 alias VARCHAR(50),
-password VARCHAR(50) NOT NULL,
+password VARCHAR(200) NOT NULL,
 email VARCHAR(50) UNIQUE NOT NULL,
 telephone VARCHAR(50),
 role_id INT NOT NULL,
@@ -133,7 +135,7 @@ CONSTRAINT fk_users_handgun_division FOREIGN KEY (handgun_division_id) REFERENCE
 CONSTRAINT fk_users_shoting_division FOREIGN KEY (shoting_division_id) REFERENCES shotgun_divisions (id),
 CONSTRAINT fk_users_rifle_division FOREIGN KEY (rifle_division_id) REFERENCES rifle_divisions (id)
 );
-insert into users values(1,'Konstantin', 'Mihaylov', 'Petrov', 'kosio', 'kosio197', 'cz', 'kosio197@abv.bg', '0895 60 66 20', 1, 1, 1,1,1,1,1);
+insert into users values(1,'Konstantin', 'Mihaylov', 'Petrov', 'kosio', 'kosio197', 'c4e98e070d2cdcd8b6486826223be4f528c54306c9e9c7191a5af6628ffb32e9', 'kosio197@abv.bg', '0895 60 66 20', 1, 1, 1,1,1,1,1);
 
 -- ***************************************************************************************************
 
@@ -162,6 +164,9 @@ match_level INT NOT NULL,
 description TEXT,
 created_by INT NOT NULL,
 discipline_id INT,
+stages LONGBLOB,
+results LONGBLOB,
+sqads LONGBLOB,
 CONSTRAINT fk_competitions_currencies FOREIGN KEY (currency_id) REFERENCES currencies (id),
 CONSTRAINT fk_competitions_users FOREIGN KEY (created_by) REFERENCES users (id),
 CONSTRAINT fk_competitions_disciplines FOREIGN KEY (discipline_id) REFERENCES disciplines (id)
@@ -172,11 +177,7 @@ CONSTRAINT fk_competitions_disciplines FOREIGN KEY (discipline_id) REFERENCES di
 CREATE TABLE stages
 (
 id INT AUTO_INCREMENT PRIMARY KEY,
-number INT NOT NULL,
-competition_id INT NOT NULL,
-min_rounds INT NOT NULL,
-max_points INT NOT NULL,
-description TEXT,
+competition_id INT NOT NULL UNIQUE,
 stage_img BLOB,
 CONSTRAINT fk_stages_competitions FOREIGN KEY (competition_id) REFERENCES competitions (id),
 UNIQUE KEY stage_number_competition_id (number, competition_id)
