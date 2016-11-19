@@ -1,0 +1,177 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+  <ui:composition template="/page/template/layout.xhtml">
+
+    <ui:define name="page-title">
+      <p:panel class="page-title">
+         <h:form >
+           <c:choose>  <!-- -->
+             <c:when test="#{CompetitionsBean.hasRegister(CURRENT_COMPETITION)}">
+               <p:commandButton value="#{msgs['button.competition.unregister']}" icon="ui-icon-extlink"
+                    ajax="false" action="#{CompetitionsBean.removeCompetitor(CURRENT_COMPETITION)}" />&nbsp;
+             </c:when>
+             <c:otherwise>
+               <p:commandButton value="#{msgs['button.competition.register']}" icon="ui-icon-extlink"
+                     ajax="false" action="#{CompetitionsBean.addCompetitor(CURRENT_COMPETITION)}" />&nbsp;
+              </c:otherwise>
+           </c:choose>
+           <p:commandButton value="_Paymant_" icon="ui-icon-extlink" ajax="false"
+                            action="userRegister.xhtml?faces-redirect=true" />
+            &nbsp;
+         </h:form>
+      </p:panel>
+    </ui:define>
+
+    <ui:define name="content">
+
+	    <p:tabView orientation="Left"> <!-- Orientation - Top|Bottom|Left|Right -->
+	    
+	        <p:tab title="View General info">
+	           <h:panelGrid columns="2" cellpadding="10">
+	            <p:panelGrid columns="2" >
+	                <f:facet name="header">
+                    <b>______________________Competition General Info______________________</b>
+                    </f:facet>
+                        <h:outputText value="Name:" />
+                        <h:outputText value="#{competitionAllDataBean.competition.name}" />
+                     
+                        <h:outputText value="Discipline:" />
+                        <h:outputText value="#{competitionAllDataBean.competition.discipline}" />
+ 
+                        <h:outputText value="Level:" />
+                        <h:outputText value="Level #{competitionAllDataBean.competition.level}" />
+                                            
+                        <h:outputText value="Stage count:" />
+                        <h:outputText value="#{competitionAllDataBean.competition.stageCount}" />
+                     
+                        <h:outputText value="Minimun round:" />
+                        <h:outputText value="#{competitionAllDataBean.competition.minRound}" />
+                        
+                        <h:outputText value="Address:" />
+                        <h:outputText value="#{competitionAllDataBean.competition.address}" />
+                     
+                        <h:outputText value="Match Date:" />
+                        <h:outputText value="#{competitionAllDataBean.competition.matchDate}" />
+                     
+                        <h:outputText value="Prematch Data:" />
+                        <h:outputText value="#{competitionAllDataBean.competition.prematchDate}" />
+                     
+                        <h:outputText value="Registration Deadline:" />
+                        <h:outputText value="#{competitionAllDataBean.competition.registrationDeadline}" />
+
+                        <h:outputText value="Payment Deadline:" />
+                        <h:outputText value="#{competitionAllDataBean.competition.paymentDeadline}" />
+                     
+                        <h:outputText value="Entry Fee  / Currency:" />
+                        <h:outputText value="#{competitionAllDataBean.competition.entryFee}  #{competitionAllDataBean.competition.feeCurrency}" />
+                     
+                        <h:outputText value="Description:" />
+                        <p:inputTextarea rows="2" cols="38" value="#{competitionAllDataBean.competition.description}"
+                          id="hppa1"  size = "5" style="#{patient.changeColor eq true ? 'color:White;background:#444444;' : 'color:White;background:#444444;'}"/>
+
+                    </p:panelGrid>
+                     &nbsp; &nbsp; &nbsp; &nbsp;
+	                <img src="#{application.contextPath}/images/competition.jpg" style="max-height:400px; max-width:600%;" />
+
+	            </h:panelGrid>
+	        </p:tab>
+	        
+	        <p:tab title="View Stages">
+
+        <object type="application/pdf" data="#{competitionAllDataBean.stage}" height="100%" width="100%">
+            Your browser can't display pdf, <a href="#{competitionAllDataBean.stage}">click</a> to download pdf instead.
+        </object>					
+
+	        </p:tab>
+	        
+	        <p:tab title="View Squads">
+        <object type="application/pdf" data="../images/stages.pdf" height="100%" width="100%">
+            Your browser can't display pdf, <a href="../images/stages.pdf">click</a> to download pdf instead.
+        </object>
+	        </p:tab>
+
+            <p:tab title="View Registered Competitors">
+                <h:panelGrid columns="1" cellpadding="10">
+		            <h:form id="form">
+		            <p:dataTable id="user2" var="user" value="#{competitionAllDataBean.competitors}"   editable="true" editMode="cell" style="margin-bottom:20px" widgetVar="usersTable"
+		                         emptyMessage="No users found with given criteria">         
+		                <f:facet name="header">
+		                    <p:outputPanel>
+		                        <h:outputText value="Search all fields:" />
+		                        <p:inputText id="globalFilter" onkeyup="PF('usersTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+		                    </p:outputPanel>
+		                </f:facet>
+		                <p:column filterBy="#{user.username}" headerText="Username" filterMatchMode="contains">
+		                    <h:outputText value="#{user.username}" />
+		                </p:column>
+		                <p:column filterBy="#{user.firstName} #{user.lastName}" headerText="Full Name" filterMatchMode="contains">
+		                    <h:outputText value="#{user.firstName} #{user.lastName}" />
+		                </p:column>
+		                <p:column filterBy="#{user.shootingClub}" headerText="Shooting Club" filterMatchMode="contains">
+		                    <h:outputText value="#{user.shootingClub}" />
+		                </p:column>
+		                <p:column filterBy="#{user.getDefaultHandgunDevisionAsString()}" filterMatchMode="in">
+		                    <f:facet name="filter">
+		                        <p:selectCheckboxMenu label="Handgun Devision" onchange="PF('usersTable').filter()" panelStyle="width:125px" scrollHeight="150">
+		                            <f:selectItems value="#{devisionBean.handgunDevisions}" />
+		                        </p:selectCheckboxMenu>
+		                    </f:facet>
+		                    <h:outputText value="#{user.getDefaultHandgunDevisionAsString()}" />
+		                </p:column>
+		                <p:column filterBy="#{user.categoryAsString}" filterMatchMode="in">
+		                    <f:facet name="filter">
+		                        <p:selectCheckboxMenu label="Category" onchange="PF('usersTable').filter()" panelStyle="width:125px" scrollHeight="150">
+		                            <f:selectItems value="#{userBean.categories}" />
+		                        </p:selectCheckboxMenu>
+		                    </f:facet>
+		                    <h:outputText value="#{user.categoryAsString}" />
+		                </p:column>
+	                </p:dataTable>
+				   <p:contextMenu for="user2" widgetVar="cMenu">   
+				       <p:menuitem value="Edit Cell" icon="ui-icon-search" onclick="PF('cellCars').showCellEditor();return false;"/>  
+				       <p:menuitem value="Hide Menu" icon="ui-icon-close" onclick="PF('cMenu').hide()"/>  
+				   </p:contextMenu>
+				   </h:form>               
+                </h:panelGrid>
+            </p:tab>
+            
+            <p:tab title="View Paymant Information">
+                <h:panelGrid columns="2" cellpadding="10">
+                    <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+                    <h:outputText value="After a break of more than 15 years..." />
+                </h:panelGrid>
+            </p:tab>
+            
+            <c:choose>
+              <c:when test="#{userBean.hasRoleAdmin()}">
+	            <p:tab title="Add or Edit Stages">
+				  <h:form>
+	                <p:fileUpload fileUploadListener="#{competitionAllDataBean.addStage}" mode="advanced" dragDropSupport="true"
+	                     update="messages" sizeLimit="1000000" allowTypes="/(\.|\/)(pdf)$/" />
+	                <p:growl id="messages" showDetail="true" />
+				   </h:form>
+	            </p:tab>
+
+	            <p:tab title="Add or Edit Squads">
+	              <h:form>
+	                <p:fileUpload fileUploadListener="#{competitionAllDataBean.addStage}" mode="advanced" dragDropSupport="true"
+	                     update="messages" sizeLimit="1000000" allowTypes="/(\.|\/)(pdf)$/" />
+	                <p:growl id="messages" showDetail="true" />
+	               </h:form>
+	            </p:tab>	
+               </c:when> 
+            </c:choose>
+ 
+	    </p:tabView>
+        </ui:define>
+  </ui:composition>
+</h:body>
+</html>

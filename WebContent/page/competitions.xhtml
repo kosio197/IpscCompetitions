@@ -15,9 +15,10 @@
             <p:accordionPanel value="#{CompetitionsBean.competitions}" var="competition" multiple="true">
               <p:tab title="#{competition.name} - #{competition.matchDate} - #{competition.discipline} - #{msgs['label.level']} #{competition.level} ">
 
-                <p:commandButton icon="ui-icon-extlink" id="registered-competitors" value="#{msgs['button.competition.registered-competitors']}" type="button" />
+                <p:commandButton icon="ui-icon-extlink" id="registered-competitors" value="#{msgs['button.competition.registered-competitors']}" type="button" /> &nbsp;
 	                <p:overlayPanel id="regidteredCompetitorsPanel" for="registered-competitors" hideEffect="fade" dynamic="true" style="width:600px">
-	                  <p:dataTable var="competitor" value="#{ManageCompetitionBean.getCompetitors(competition)}" rows="10" paginator="true">
+	                  <p:dataTable var="competitor" value="#{CompetitionsBean.getCompetitors(competition)}" rows="10" paginator="true">
+	                    
 	                    <p:column headerText="#{msgs['label.fullname']}">
 	                        <h:outputText value="#{competitor.firstName} #{competitor.lastName}" />
 	                    </p:column>
@@ -33,15 +34,15 @@
 	                    <p:column headerText="#{msgs['label.category']}">
 	                        <h:outputText value="#{competitor.category}" />
 	                    </p:column>
+	                 
 	                 </p:dataTable>
 	                </p:overlayPanel>
-                
+
                 <c:choose>
                     <c:when test="#{not empty LOGGED_USER}">
-                        <p:commandButton value="#{msgs['button.competition.register']}" icon="ui-icon-extlink" 
-                         ajax="false" action="#{ManageCompetitionBean.addCompetitor(competition)}" />
+                     <p:commandButton value="General Info" icon="ui-icon-extlink" action= "#{CompetitionsBean.generalInfoSendRedirect(competition)}" /> &nbsp;                     
                     </c:when>
-                </c:choose>         
+                </c:choose>
 
                 <h:panelGrid columns="2" cellpadding="5">
                   <h:outputText value="" />

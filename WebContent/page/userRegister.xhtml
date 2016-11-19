@@ -9,13 +9,10 @@
       xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:body>
   <ui:composition template="/page/template/layout.xhtml">
-    <ui:define name="menu" />
-    
+
     <ui:define name="page-title">
-      <p:panel class="page-title">
-          <b>User Registration Form</b>
-      </p:panel>
-    </ui:define>>
+      <p:commandButton value="#{msgs['button.back']}" icon="ui-icon-extlink" action= "competitions.xhtml?faces-redirect=true" /> &nbsp;
+    </ui:define>
     
     <ui:define name="content">
 		<h:form>		    

@@ -34,7 +34,6 @@ public class UserBean {
 
     @PostConstruct
     public void init() {
-
         allUsers = userService.getAllUsers();
         user = getLogetUser();
         if (user == null) {

@@ -17,7 +17,6 @@ public class LoginBean {
 
     @EJB
     private UserService userService;
-
     @Inject
     private HttpServletRequest request;
 
@@ -25,7 +24,7 @@ public class LoginBean {
     private String password;
 
     public String login() {
-        User user = userService.validateUser(username, password);
+        User user = userService.getUser(username, password);
 
         if (null == user) {
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ivalid username or password!", null);
