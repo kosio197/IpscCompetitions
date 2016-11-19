@@ -179,8 +179,7 @@ CREATE TABLE stages
 id INT AUTO_INCREMENT PRIMARY KEY,
 competition_id INT NOT NULL UNIQUE,
 stage_img BLOB,
-CONSTRAINT fk_stages_competitions FOREIGN KEY (competition_id) REFERENCES competitions (id),
-UNIQUE KEY stage_number_competition_id (number, competition_id)
+CONSTRAINT fk_stages_competitions FOREIGN KEY (competition_id) REFERENCES competitions (id)
 );
 
 -- ****************************************************************************************************
@@ -226,4 +225,3 @@ CONSTRAINT fk_registered_users_competitions FOREIGN KEY (competition_id) REFEREN
 CONSTRAINT fk_registered_users_users FOREIGN KEY (user_id) REFERENCES users (id),
 UNIQUE KEY user_id_competition_id (user_id, competition_id)
 );
-
