@@ -27,3 +27,7 @@ body {
     font-weight: bold;
     color:white;
 }
+
+.ui-widget-header {
+    background: #444444;
+}

@@ -38,7 +38,18 @@ public class CompetitionAllDataBean {
     private StreamedContent stagesPdf;
     private UploadedFile stagesFile;
 
+    private StreamedContent squadsPdf;
+    private UploadedFile squadsFile;
+
+    private StreamedContent resultsPdf;
+    private UploadedFile resultsFile;
+
     private int activeIndex = 0;
+
+    @PostConstruct
+    public void init() {
+        competition = (Competition) request.getSession().getAttribute("CURRENT_COMPETITION");
+    }
 
     public int getActiveIndex() {
         return activeIndex;
@@ -48,11 +59,7 @@ public class CompetitionAllDataBean {
         this.activeIndex = activeIndex;
     }
 
-    @PostConstruct
-    public void init() {
-        competition = (Competition) request.getSession().getAttribute("CURRENT_COMPETITION");
-        updateStagesPdf();
-    }
+    /* Stages */
 
     public UploadedFile getStagesFile() {
         return stagesFile;
@@ -66,7 +73,6 @@ public class CompetitionAllDataBean {
         setStagesFile(event.getFile());
         competition.setStages(event.getFile().getContents());
         competitionService.editCompetition(competition);
-        updateStagesPdf();
         setActiveIndex(1);
         FacesContext ctx = FacesContext.getCurrentInstance();
         String url = ctx.getExternalContext().encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx,
@@ -80,6 +86,7 @@ public class CompetitionAllDataBean {
     }
 
     public StreamedContent getStagesPdf() {
+        updateStagesPdf();
         return stagesPdf;
     }
 
@@ -87,13 +94,105 @@ public class CompetitionAllDataBean {
         this.stagesPdf = stagesPdf;
     }
 
+    /* Squads */
+
+    public UploadedFile getSquadsFile() {
+        return squadsFile;
+    }
+
+    public void setSquadsFile(UploadedFile squadsFile) {
+        this.squadsFile = squadsFile;
+    }
+
+    public void updateSquadsFile(FileUploadEvent event) {
+        setSquadsFile(event.getFile());
+        competition.setSquads(event.getFile().getContents());
+        competitionService.editCompetition(competition);
+        updateSquadsPdf();
+        setActiveIndex(1);
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        String url = ctx.getExternalContext().encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx,
+                "/page/generalInfo.xhtml?faces-redirect=true"));
+        try {
+            ctx.getExternalContext().redirect(url);
+            setActiveIndex(0);
+        } catch (IOException ioe) {
+            throw new FacesException(ioe);
+        }
+    }
+
+    public StreamedContent getSquadsPdf() {
+        updateSquadsPdf();
+        return squadsPdf;
+    }
+
+    public void setSquadsPdf(StreamedContent squadsPdf) {
+        this.squadsPdf = squadsPdf;
+    }
+
+    /* Results */
+
+    public UploadedFile getResultsFile() {
+        return resultsFile;
+    }
+
+    public void setResultsFile(UploadedFile resultsFile) {
+        this.resultsFile = resultsFile;
+    }
+
+    public void updateResultsFile(FileUploadEvent event) {
+        setResultsFile(event.getFile());
+        competition.setResults(event.getFile().getContents());
+        competitionService.editCompetition(competition);
+        setActiveIndex(1);
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        String url = ctx.getExternalContext().encodeActionURL(ctx.getApplication().getViewHandler().getActionURL(ctx,
+                "/page/generalInfo.xhtml?faces-redirect=true"));
+        try {
+            ctx.getExternalContext().redirect(url);
+            setActiveIndex(0);
+        } catch (IOException ioe) {
+            throw new FacesException(ioe);
+        }
+    }
+
+    public StreamedContent getResultsPdf() {
+        updateResultsPdf();
+        return resultsPdf;
+    }
+
+    public void setResultsPdf(StreamedContent resultsPdf) {
+        this.resultsPdf = resultsPdf;
+    }
+
     private void updateStagesPdf() {
         if (competition.getStages() != null) {
             InputStream stream = new ByteArrayInputStream(competition.getStages());
             StreamedContent streamedContent = new DefaultStreamedContent(stream, "application/pdf");
             setStagesPdf(streamedContent);
+
         } else {
             setStagesPdf(new DefaultStreamedContent());
+        }
+    }
+
+    private void updateSquadsPdf() {
+        if (competition.getSquads() != null) {
+            InputStream stream = new ByteArrayInputStream(competition.getSquads());
+            StreamedContent streamedContent = new DefaultStreamedContent(stream, "application/pdf");
+            setSquadsPdf(streamedContent);
+        } else {
+            setSquadsPdf(new DefaultStreamedContent());
+        }
+    }
+
+    private void updateResultsPdf() {
+        if (competition.getResults() != null) {
+            InputStream stream = new ByteArrayInputStream(competition.getResults());
+            StreamedContent streamedContent = new DefaultStreamedContent(stream, "application/pdf");
+            setResultsPdf(streamedContent);
+        } else {
+            setResultsPdf(new DefaultStreamedContent());
         }
     }
 

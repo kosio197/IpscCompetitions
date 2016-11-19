@@ -74,7 +74,7 @@
                      
                         <h:outputText value="Description:" />
                         <p:inputTextarea rows="2" cols="38" value="#{competitionAllDataBean.competition.description}"
-                          id="hppa1"  size = "5" style="#{patient.changeColor eq true ? 'color:White;background:#444444;' : 'color:White;background:#444444;'}"/>
+                          id="hppa1"  size = "5" style="color:White; background:#444444;"/>
 
                     </p:panelGrid>
                      &nbsp; &nbsp; &nbsp; &nbsp;
@@ -83,20 +83,48 @@
 	            </h:panelGrid>
 	        </p:tab>
 	        
-	        <p:tab title="View Stages">
+	        <p:tab title="View Stages" dynamic="true" cache="false">
 	            <h:form>
-                    <p:fileUpload value="competitionAllDataBean.stagesFile" fileUploadListener="#{competitionAllDataBean.updateStagesFile}" mode="advanced" dragDropSupport="true"
-                         update="messages" sizeLimit="1000000" allowTypes="/(\.|\/)(pdf|jpg)$/" />
-                    <p:growl id="messages" showDetail="true" />
+	                <c:choose>
+	                   <c:when test="#{userBean.hasRoleAdmin()}">
+	                       <p:fileUpload value="competitionAllDataBean.stagesFile" fileUploadListener="#{competitionAllDataBean.updateStagesFile}" mode="advanced" dragDropSupport="true"
+	                           update="messages" sizeLimit="1000000" allowTypes="/(\.|\/)(pdf)$/" />
+	                       <p:growl id="messages" showDetail="true" />
+	                   </c:when>
+                    </c:choose>
+                    
                     <p:media cache="false" value="#{competitionAllDataBean.stagesPdf}" width="100%" height="100%" player="pdf" />
                 </h:form>
 	        </p:tab>
 	        
 	        <p:tab title="View Squads">
-        <object type="application/pdf" data="../images/stages.pdf" height="100%" width="100%">
-            Your browser can't display pdf, <a href="../images/stages.pdf">click</a> to download pdf instead.
-        </object>
+                <h:form>
+                    <c:choose>
+                       <c:when test="#{userBean.hasRoleAdmin()}">
+                            <p:fileUpload value="competitionAllDataBean.squadsFile" fileUploadListener="#{competitionAllDataBean.updateSquadsFile}" mode="advanced" dragDropSupport="true"
+                                 update="messages" sizeLimit="1000000" allowTypes="/(\.|\/)(pdf)$/" />
+
+                            <p:growl id="messages" showDetail="true" />
+                       </c:when>
+                    </c:choose>
+
+                    <p:media cache="false" value="#{competitionAllDataBean.squadsPdf}" width="100%" height="100%" player="pdf" />
+                </h:form>
 	        </p:tab>
+
+            <p:tab title="View Results">
+                <h:form>
+                    <c:choose>
+                       <c:when test="#{userBean.hasRoleAdmin()}">
+		                   <p:fileUpload value="competitionAllDataBean.resultsFile" fileUploadListener="#{competitionAllDataBean.updateResultsFile}" mode="advanced" dragDropSupport="true"
+		                        update="messages" sizeLimit="1000000" allowTypes="/(\.|\/)(pdf)$/" />
+		                   <p:growl id="messages" showDetail="true" />
+                       </c:when>
+                    </c:choose>
+
+                    <p:media cache="false" value="#{competitionAllDataBean.resultsPdf}" width="100%" height="100%" player="pdf" />
+                </h:form>
+            </p:tab>
 
             <p:tab title="View Registered Competitors">
                 <h:panelGrid columns="1" cellpadding="10">
@@ -142,34 +170,6 @@
 				   </h:form>               
                 </h:panelGrid>
             </p:tab>
-            
-            <p:tab title="View Paymant Information">
-                <h:panelGrid columns="2" cellpadding="10">
-                    <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
-                    <h:outputText value="After a break of more than 15 years..." />
-                </h:panelGrid>
-            </p:tab>
-            
-            <c:choose>
-              <c:when test="#{userBean.hasRoleAdmin()}">
-	            <p:tab title="Add or Edit Stages">
-				  <h:form>
-	                <p:fileUpload fileUploadListener="#{competitionAllDataBean.addStage}" mode="advanced" dragDropSupport="true"
-	                     update="messages" sizeLimit="1000000" allowTypes="/(\.|\/)(pdf)$/" />
-	                <p:growl id="messages" showDetail="true" />
-				   </h:form>
-	            </p:tab>
-
-	            <p:tab title="Add or Edit Squads">
-	              <h:form>
-	                <p:fileUpload fileUploadListener="#{competitionAllDataBean.addStage}" mode="advanced" dragDropSupport="true"
-	                     update="messages" sizeLimit="1000000" allowTypes="/(\.|\/)(pdf)$/" />
-	                <p:growl id="messages" showDetail="true" />
-	               </h:form>
-	            </p:tab>	
-               </c:when> 
-            </c:choose>
- 
 	    </p:tabView>
         </ui:define>
   </ui:composition>
