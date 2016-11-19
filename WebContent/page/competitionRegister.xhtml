@@ -50,16 +50,16 @@
                 <p:inputNumber id="competition-stageCount" value="#{CompetitionsBean.competition.stageCount}" decimalPlaces="0" />  
 
                 <p:outputLabel for="competition-matchDate" class="bold-label" value="#{msgs['competition.matchDate']}: *"  />
-                <p:calendar id="competition-matchDate" value="#{CompetitionsBean.competition.matchDate}" mask="true" navigator="true" pattern="yyyy-MMM-dd" />
+                <p:calendar id="competition-matchDate" value="#{CompetitionsBean.competition.matchDate}" navigator="true" pattern="yyyy-MMM-dd" />
 
                 <p:outputLabel for="competition-prematchDate" class="bold-label" value="#{msgs['competition.prematchDate']}: *"  />
-                <p:calendar id="competition-prematchDate" value="#{CompetitionsBean.competition.prematchDate}" mask="true" navigator="true" pattern="yyyy-MMM-dd" />
+                <p:calendar id="competition-prematchDate" value="#{CompetitionsBean.competition.prematchDate}" navigator="true" pattern="yyyy-MMM-dd" />
 
                 <p:outputLabel for="registrationDeadline" class="bold-label" value="#{msgs['competition.registrationDeadline']}: *"  />
-                <p:calendar id="registrationDeadline" value="#{CompetitionsBean.competition.registrationDeadline}" mask="true" navigator="true" pattern="yyyy-MMM-dd" />
+                <p:calendar id="registrationDeadline" value="#{CompetitionsBean.competition.registrationDeadline}" navigator="true" pattern="yyyy-MMM-dd" />
 
                 <p:outputLabel for="paymentDeadline" class="bold-label" value="#{msgs['competition.paymentDeadline']}: *"  />
-                <p:calendar id="paymentDeadline" value="#{CompetitionsBean.competition.paymentDeadline}" mask="true" navigator="true" pattern="yyyy-MMM-dd" />
+                <p:calendar id="paymentDeadline" value="#{CompetitionsBean.competition.paymentDeadline}" navigator="true" pattern="yyyy-MMM-dd" />
 
                 <h:outputText for="competition-entryFee" class="bold-label" value="#{msgs['competition.entryFee']}: *"  />
                 <p:inputText id="competition-entryFee" value="#{CompetitionsBean.competition.fee}" decimalPlaces="2" required="true" requiredMessage="#{msgs['competition.entryFee.required']}" />

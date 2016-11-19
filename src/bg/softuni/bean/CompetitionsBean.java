@@ -31,13 +31,16 @@ public class CompetitionsBean {
     @PostConstruct
     public void init() {
         competition = (Competition) request.getSession().getAttribute("CURRENT_COMPETITION");
+
         if (competition == null) {
             competition = new Competition();
         }
 
         afterDateCompetitions = new ArrayList<Competition>();
         beforeDateCompetitions = new ArrayList<Competition>();
+
         List<Competition> competitions = competitionService.getAllCompetitions();
+
         for (Competition comp : competitions) {
             if (new Date().before(comp.getMatchDate())) {
                 afterDateCompetitions.add(comp);

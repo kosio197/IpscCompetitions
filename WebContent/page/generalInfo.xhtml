@@ -31,8 +31,7 @@
     </ui:define>
 
     <ui:define name="content">
-
-	    <p:tabView orientation="Left"> <!-- Orientation - Top|Bottom|Left|Right -->
+	    <p:tabView orientation="Left" activeIndex="#{competitionAllDataBean.activeIndex}"> <!-- Orientation - Top|Bottom|Left|Right -->
 	    
 	        <p:tab title="View General info">
 	           <h:panelGrid columns="2" cellpadding="10">
@@ -85,11 +84,12 @@
 	        </p:tab>
 	        
 	        <p:tab title="View Stages">
-
-        <object type="application/pdf" data="#{competitionAllDataBean.stage}" height="100%" width="100%">
-            Your browser can't display pdf, <a href="#{competitionAllDataBean.stage}">click</a> to download pdf instead.
-        </object>					
-
+	            <h:form>
+                    <p:fileUpload value="competitionAllDataBean.stagesFile" fileUploadListener="#{competitionAllDataBean.updateStagesFile}" mode="advanced" dragDropSupport="true"
+                         update="messages" sizeLimit="1000000" allowTypes="/(\.|\/)(pdf|jpg)$/" />
+                    <p:growl id="messages" showDetail="true" />
+                    <p:media cache="false" value="#{competitionAllDataBean.stagesPdf}" width="100%" height="100%" player="pdf" />
+                </h:form>
 	        </p:tab>
 	        
 	        <p:tab title="View Squads">
