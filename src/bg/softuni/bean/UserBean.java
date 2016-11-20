@@ -35,7 +35,9 @@ public class UserBean {
     @PostConstruct
     public void init() {
         allUsers = userService.getAllUsers();
+
         user = getLogetUser();
+
         if (user == null) {
             user = new User();
         }
@@ -50,9 +52,22 @@ public class UserBean {
     }
 
     public String save() {
-        userService.addUser(user);
+        if (userService.usernameExists(user.getUsername())) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Username " + user.getUsername() + " already exists!",
+                            null));
+            return "";
+        }
 
-        return "/page/competitions?faces-redirect=true";
+        if (userService.emailExists(user.getEmail())) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email " + user.getEmail() + " already exists!",
+                            null));
+            return "";
+        }
+
+        userService.addUser(user);
+        return "/page/login.xhtml?faces-redirect=true";
     }
 
     public UserService getUserService() {
@@ -73,8 +88,16 @@ public class UserBean {
     }
 
     public String editProfile() {
+        if (!userService.getUser(user.getUsername()).getEmail().equals(user.getEmail())
+                && userService.emailExists(user.getEmail())) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email " + user.getEmail() + " already exists!",
+                            null));
+            return "";
+        }
+
         userService.editProfile(getLogetUser(), user);
-        return "/page/competitions?faces-redirect=true";
+        return "";
     }
 
     public List<User> getAllUsers() {

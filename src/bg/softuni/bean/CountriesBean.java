@@ -16,12 +16,10 @@ public class CountriesBean {
     CountryService countryService;
 
     private List<String> countries;
-    private String defaultCountry;
 
     @PostConstruct
     public void init() {
         countries = countryService.getAllCountries();
-        defaultCountry = "Bulgaria";
     }
 
     public List<String> getCountries() {
@@ -30,13 +28,5 @@ public class CountriesBean {
 
     public void setCountries(List<String> countries) {
         this.countries = countries;
-    }
-
-    public String getDefaultCountry() {
-        return defaultCountry;
-    }
-
-    public void setDefaultCountry(String defaultCountry) {
-        this.defaultCountry = defaultCountry;
     }
 }

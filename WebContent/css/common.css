@@ -31,3 +31,7 @@ body {
 .ui-widget-header {
     background: #444444;
 }
+
+.ui-widget-content {
+    border: 1px solid #29345C;
+}

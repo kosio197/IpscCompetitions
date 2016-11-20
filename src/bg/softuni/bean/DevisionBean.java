@@ -8,7 +8,7 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
 import bg.softuni.model.enumeration.HandgunDevision;
-import bg.softuni.model.enumeration.RiffleDevision;
+import bg.softuni.model.enumeration.RifleDevision;
 import bg.softuni.model.enumeration.ShotgunDevision;
 
 @ManagedBean(name = "devisionBean")
@@ -32,7 +32,7 @@ public class DevisionBean {
         }
 
         rifleDevisions = new ArrayList<String>();
-        for (RiffleDevision hd : RiffleDevision.values()) {
+        for (RifleDevision hd : RifleDevision.values()) {
             rifleDevisions.add(hd.toString());
         }
     }
