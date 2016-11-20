@@ -9,10 +9,16 @@
       xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:body>
   <ui:composition>
-    <h1 class="title ui-widget-header ui-corner-all">#{msgs['page-title']}</h1>
+    <h1 class="title ui-widget-header ui-corner-all" align="center">
+        <img src="#{application.contextPath}/images/ipsclogo.gif" style="max-height:30px; max-width:100%; margin-top:5px;" />
+        &nbsp;&nbsp;&nbsp;#{msgs['page-title']}&nbsp;&nbsp;&nbsp;
+        <img src="#{application.contextPath}/images/ipsc-bg-logo.png" style="max-height:30px; max-width:100%; margin-top:5px;" />
+    </h1>
 
     <p:panel id="basic" style="margin-bottom:20px; height: 150px;">
-      <img src="#{application.contextPath}/images/bullets1.jpg" style="max-height:130px; max-width:100%;" /><img src="#{application.contextPath}/images/bullets1.jpg" style="max-height:130px; max-width:100%;" /><img src="#{application.contextPath}/images/bullets1.jpg" style="max-height:130px; max-width:100%;" /><img src="#{application.contextPath}/images/bullets1.jpg" style="max-height:130px; max-width:100%;" /><img src="#{application.contextPath}/images/bullets1.jpg" style="max-height:130px; max-width:100%;" /><img src="#{application.contextPath}/images/bullets1.jpg" style="max-height:130px; max-width:100%;" /><img src="#{application.contextPath}/images/bullets1.jpg" style="max-height:130px; max-width:100%;" />
+      <div align="center">
+         <img src="#{application.contextPath}/images/main.jpg" style="max-height:130px; max-width:100%;" />
+      </div>
     </p:panel>
   </ui:composition>
 </h:body>
