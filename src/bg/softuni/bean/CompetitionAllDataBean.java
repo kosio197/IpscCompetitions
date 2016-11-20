@@ -9,8 +9,9 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.FacesException;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.PhaseId;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,7 +25,7 @@ import bg.softuni.model.user.User;
 import bg.softuni.service.CompetitionService;
 
 @ManagedBean(name = "competitionAllDataBean")
-@SessionScoped
+@RequestScoped
 public class CompetitionAllDataBean {
 
     @EJB
@@ -166,13 +167,19 @@ public class CompetitionAllDataBean {
     }
 
     private void updateStagesPdf() {
-        if (competition.getStages() != null) {
-            InputStream stream = new ByteArrayInputStream(competition.getStages());
-            StreamedContent streamedContent = new DefaultStreamedContent(stream, "application/pdf");
-            setStagesPdf(streamedContent);
+        FacesContext context = FacesContext.getCurrentInstance();
 
-        } else {
+        if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
             setStagesPdf(new DefaultStreamedContent());
+        } else {
+            if (competition.getStages() != null) {
+                InputStream stream = new ByteArrayInputStream(competition.getStages());
+                StreamedContent streamedContent = new DefaultStreamedContent(stream, "application/pdf");
+                setStagesPdf(streamedContent);
+
+            } else {
+                setStagesPdf(new DefaultStreamedContent());
+            }
         }
     }
 

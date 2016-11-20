@@ -13,7 +13,7 @@
     <ui:define name="page-title">
       <p:panel class="page-title">
          <h:form >
-           <c:choose>  <!-- -->
+           <c:choose>
              <c:when test="#{CompetitionsBean.hasRegister(CURRENT_COMPETITION)}">
                <p:commandButton value="#{msgs['button.competition.unregister']}" icon="ui-icon-extlink"
                     ajax="false" action="#{CompetitionsBean.removeCompetitor(CURRENT_COMPETITION)}" />&nbsp;
@@ -23,9 +23,6 @@
                      ajax="false" action="#{CompetitionsBean.addCompetitor(CURRENT_COMPETITION)}" />&nbsp;
               </c:otherwise>
            </c:choose>
-           <p:commandButton value="_Paymant_" icon="ui-icon-extlink" ajax="false"
-                            action="userRegister.xhtml?faces-redirect=true" />
-            &nbsp;
          </h:form>
       </p:panel>
     </ui:define>
@@ -74,7 +71,7 @@
                      
                         <h:outputText value="Description:" />
                         <p:inputTextarea rows="2" cols="38" value="#{competitionAllDataBean.competition.description}"
-                          id="hppa1"  size = "5" style="color:White; background:#444444;"/>
+                          id="hppa1" readonly="true" size = "5" style="color:White; background:#444444;"/>
 
                     </p:panelGrid>
                      &nbsp; &nbsp; &nbsp; &nbsp;
@@ -146,14 +143,56 @@
 		                <p:column filterBy="#{user.shootingClub}" headerText="Shooting Club" filterMatchMode="contains">
 		                    <h:outputText value="#{user.shootingClub}" />
 		                </p:column>
-		                <p:column filterBy="#{user.getDefaultHandgunDevisionAsString()}" filterMatchMode="in">
-		                    <f:facet name="filter">
-		                        <p:selectCheckboxMenu label="Handgun Devision" onchange="PF('usersTable').filter()" panelStyle="width:125px" scrollHeight="150">
-		                            <f:selectItems value="#{devisionBean.handgunDevisions}" />
-		                        </p:selectCheckboxMenu>
-		                    </f:facet>
-		                    <h:outputText value="#{user.getDefaultHandgunDevisionAsString()}" />
-		                </p:column>
+		                <c:choose>
+		                  <c:when test="#{competitionAllDataBean.competition.getDisciplineAsString() == 'HANDGUN'}">
+			                <p:column filterBy="#{user.getDefaultHandgunDevisionAsString()}" filterMatchMode="in">
+			                    <f:facet name="filter">
+			                        <p:selectCheckboxMenu label="Handgun Devision" onchange="PF('usersTable').filter()" panelStyle="width:125px" scrollHeight="150">
+			                            <f:selectItems value="#{devisionBean.handgunDevisions}" />
+			                        </p:selectCheckboxMenu>
+			                    </f:facet>
+			                    <h:outputText value="#{user.getDefaultHandgunDevisionAsString()}" />
+			                </p:column>
+			                <p:column filterBy="#{user.getDefaulHandgunPowerFactorAsString()}" filterMatchMode="in">
+                                <f:facet name="filter">
+                                    <p:selectCheckboxMenu label="PF" onchange="PF('usersTable').filter()" panelStyle="width:125px" scrollHeight="150">
+                                        <f:selectItem itemLabel="Min" itemValue="MIN" />
+                                        <f:selectItem itemLabel="Maj" itemValue="MAJ" />
+                                    </p:selectCheckboxMenu>
+                                </f:facet>
+                                <h:outputText value="#{user.getDefaulHandgunPowerFactorAsString()}" />
+                            </p:column>
+		                  </c:when>
+                          <c:when test="#{competitionAllDataBean.competition.getDisciplineAsString() == 'SHOTGUN'}">
+                            <p:column filterBy="#{user.getDefaultHandgunDevisionAsString()}" filterMatchMode="in">
+                                <f:facet name="filter">
+                                    <p:selectCheckboxMenu label="Shotgun Devision" onchange="PF('usersTable').filter()" panelStyle="width:125px" scrollHeight="150">
+                                        <f:selectItems value="#{devisionBean.shotgunDevisions}" />
+                                    </p:selectCheckboxMenu>
+                                </f:facet>
+                                <h:outputText value="#{user.getDefaultShotgunDevisionAsString()}" />
+                            </p:column>
+                          </c:when>
+                          <c:when test="#{competitionAllDataBean.competition.getDisciplineAsString() == 'RIFLE'}">
+                            <p:column filterBy="#{user.getDefaultRifleDevisionAsString()}" filterMatchMode="in">
+                                <f:facet name="filter">
+                                    <p:selectCheckboxMenu label="Rifle Devision" onchange="PF('usersTable').filter()" panelStyle="width:125px" scrollHeight="150">
+                                        <f:selectItems value="#{devisionBean.rifleDevisions}" />
+                                    </p:selectCheckboxMenu>
+                                </f:facet>
+                                <h:outputText value="#{user.getDefaultRifleDevisionAsString()}" />
+                            </p:column>
+                            <p:column filterBy="#{user.getDefaulRiflePowerFactorAsString()}" filterMatchMode="in">
+                                <f:facet name="filter">
+                                    <p:selectCheckboxMenu label="PF" onchange="PF('usersTable').filter()" panelStyle="width:125px" scrollHeight="150">
+                                        <f:selectItem itemLabel="Min" itemValue="MIN" />
+                                        <f:selectItem itemLabel="Maj" itemValue="MAJ" />
+                                    </p:selectCheckboxMenu>
+                                </f:facet>
+                                <h:outputText value="#{user.getDefaulRiflePowerFactorAsString()}" />
+                            </p:column>
+                          </c:when>
+		                </c:choose>
 		                <p:column filterBy="#{user.categoryAsString}" filterMatchMode="in">
 		                    <f:facet name="filter">
 		                        <p:selectCheckboxMenu label="Category" onchange="PF('usersTable').filter()" panelStyle="width:125px" scrollHeight="150">

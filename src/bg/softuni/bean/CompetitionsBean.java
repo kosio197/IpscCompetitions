@@ -21,8 +21,12 @@ public class CompetitionsBean {
 
     @EJB
     private CompetitionService competitionService;
+
     @Inject
     private HttpServletRequest request;
+
+    @Inject
+    CompetitionAllDataBean currentCompetition;
 
     private List<Competition> afterDateCompetitions;
     private List<Competition> beforeDateCompetitions;
@@ -66,10 +70,11 @@ public class CompetitionsBean {
     }
 
     public String addCompetitor(Competition competition) {
-        if (hasRegister(competition))
-            return "";
-        return competitionService.addCompetitor(competition);
+        if (!hasRegister(competition)) {
+            competitionService.addCompetitor(competition);
+        }
 
+        return "";
     }
 
     public String removeCompetitor(Competition competition) {

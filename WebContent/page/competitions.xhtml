@@ -46,6 +46,11 @@
           <p:fieldset legend="Past #{msgs['label.competitions']}" toggleable="true" toggleSpeed="500">
             <p:accordionPanel value="#{CompetitionsBean.pastCompetitions}" var="competition" multiple="true">
               <p:tab title="#{competition.name} - #{competition.matchDate} - #{competition.discipline} - #{msgs['label.level']} #{competition.level} ">
+                <c:choose>
+                    <c:when test="#{not empty LOGGED_USER}">
+                     <p:commandButton value="General Info" icon="ui-icon-extlink" action= "#{CompetitionsBean.generalInfoSendRedirect(competition)}" /> &nbsp;                     
+                    </c:when>
+                </c:choose>
                 <h:panelGrid columns="2" cellpadding="5">
                    <h:outputText value="#{msgs['label.min-rounds']}:" style="font-weight: bold" />
                    <h:outputText value="#{competition.minRound}" />
