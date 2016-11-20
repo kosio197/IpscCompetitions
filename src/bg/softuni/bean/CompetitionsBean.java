@@ -60,6 +60,7 @@ public class CompetitionsBean {
     }
 
     public String addNewCompetition() {
+        request.getSession().setAttribute("CURRENT_COMPETITION", null);
         competitionService.addCompetition(competition);
         return "/page/competitions?faces-redirect=true";
     }

@@ -23,6 +23,11 @@
                      ajax="false" action="#{CompetitionsBean.addCompetitor(CURRENT_COMPETITION)}" />&nbsp;
               </c:otherwise>
            </c:choose>
+           <c:choose>
+	           <c:when test="#{userBean.hasRoleAdmin()}">
+		          <p:commandButton value="#{msgs['button.competition.edit']}" icon="ui-icon-extlink" action="competitionRegister.xhtml?faces-redirect=true"/> &nbsp;
+	           </c:when>
+           </c:choose>
          </h:form>
       </p:panel>
     </ui:define>

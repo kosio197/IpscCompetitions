@@ -21,11 +21,6 @@
                   <c:choose>
                   <c:when test="#{userBean.hasRoleAdmin()}">
                       <p:commandButton value="#{msgs['button.competition.add']}" icon="ui-icon-extlink" action="competitionRegister.xhtml?faces-redirect=true"/> &nbsp;
-                      <c:choose>
-                        <c:when test="#{not empty CURRENT_COMPETITION}">
-                         <p:commandButton value="#{msgs['button.competition.edit']}" icon="ui-icon-extlink" action="competitionRegister.xhtml?faces-redirect=true"/> &nbsp;
-                        </c:when>
-                      </c:choose>
                       <p:commandButton value="#{msgs['button.editAnotherProfile']}" icon="ui-icon-extlink" action="ManageAnoderUserProfile.xhtmlfaces-redirect=true"/> &nbsp;
                   </c:when>	
                   </c:choose>	    
