@@ -15,4 +15,11 @@
 
         <message-bundle>application</message-bundle>
     </application>
+    
+    <factory>
+        <exception-handler-factory>
+            bg.softuni.exception.CustomExceptionHandlerFactory
+        </exception-handler-factory>
+    </factory>
+    
 </faces-config>

@@ -14,30 +14,6 @@
          <p:fieldset legend="Upcoming #{msgs['label.competitions']}" toggleable="true" toggleSpeed="500">
             <p:accordionPanel value="#{CompetitionsBean.competitions}" var="competition" multiple="true">
               <p:tab title="#{competition.name} - #{competition.matchDate} - #{competition.discipline} - #{msgs['label.level']} #{competition.level} ">
-
-                <p:commandButton icon="ui-icon-extlink" id="registered-competitors" value="#{msgs['button.competition.registered-competitors']}" type="button" /> &nbsp;
-	                <p:overlayPanel id="regidteredCompetitorsPanel" for="registered-competitors" hideEffect="fade" dynamic="true" style="width:600px">
-	                  <p:dataTable var="competitor" value="#{CompetitionsBean.getCompetitors(competition)}" rows="10" paginator="true">
-	                    
-	                    <p:column headerText="#{msgs['label.fullname']}">
-	                        <h:outputText value="#{competitor.firstName} #{competitor.lastName}" />
-	                    </p:column>
-	
-	                    <p:column headerText="#{msgs['label.club']}">
-	                        <h:outputText value="#{competitor.shootingClub}" />
-	                    </p:column>
-	
-	                    <p:column headerText="#{msgs['label.devision']}">
-	                        <h:outputText value="#{competitor.defaultHandgunDevision}" />
-	                    </p:column>
-	
-	                    <p:column headerText="#{msgs['label.category']}">
-	                        <h:outputText value="#{competitor.category}" />
-	                    </p:column>
-	                 
-	                 </p:dataTable>
-	                </p:overlayPanel>
-
                 <c:choose>
                     <c:when test="#{not empty LOGGED_USER}">
                      <p:commandButton value="General Info" icon="ui-icon-extlink" action= "#{CompetitionsBean.generalInfoSendRedirect(competition)}" /> &nbsp;                     
@@ -45,12 +21,6 @@
                 </c:choose>
 
                 <h:panelGrid columns="2" cellpadding="5">
-                  <h:outputText value="" />
-                  <h:outputText value="" />
-
-                  <h:outputText value="" />
-                  <h:outputText value="" />
-
                   <h:outputText value="#{msgs['label.address']}:" style="font-weight: bold" />
                   <h:outputText value="#{competition.address}" />
 
@@ -76,55 +46,7 @@
           <p:fieldset legend="Past #{msgs['label.competitions']}" toggleable="true" toggleSpeed="500">
             <p:accordionPanel value="#{CompetitionsBean.pastCompetitions}" var="competition" multiple="true">
               <p:tab title="#{competition.name} - #{competition.matchDate} - #{competition.discipline} - #{msgs['label.level']} #{competition.level} ">
-
-                <p:commandButton icon="ui-icon-extlink" id="squads" value="#{msgs['button.competition.squads']}" type="button" />
-                <p:overlayPanel id="squadsPanel" for="squads" hideEffect="fade" dynamic="true" style="width:600px">
-                    <p:dataTable var="competitor" value="#{RegisteredCompetitors.competitors}" rows="8" paginator="true">
-                     <p:column headerText="#{msgs['label.fullname']}">
-                         <h:outputText value="#{competitor.user.firstName} #{competitor.user.lastName}" />
-                     </p:column>
-
-                     <p:column headerText="#{msgs['label.country']}">
-                         <h:outputText value="#{competitor.user.country}" />
-                     </p:column>
-
-                     <p:column headerText="#{msgs['label.devision']}">
-                         <h:outputText value="test" />
-                     </p:column>
-
-                     <p:column headerText="#{msgs['label.category']}">
-                         <h:outputText value="#{competitor.user.category}" />
-                     </p:column>
-                    </p:dataTable>
-                </p:overlayPanel>
-
-                <p:commandButton icon="ui-icon-extlink" id="registered-competitors" value="#{msgs['button.competition.registered-competitors']}" type="button" />
-                <p:overlayPanel id="regidteredCompetitorsPanel" for="registered-competitors" hideEffect="fade" dynamic="true" style="width:600px">
-                  <p:dataTable var="competitor" value="#{RegisteredCompetitors.competitors}" rows="10" paginator="true">
-                    <p:column headerText="#{msgs['label.fullname']}">
-                        <h:outputText value="#{competitor.user.firstName} #{competitor.user.lastName}" />
-                    </p:column>
-
-                    <p:column headerText="#{msgs['label.country']}">
-                        <h:outputText value="#{competitor.user.country}" />
-                    </p:column>
-
-                    <p:column headerText="#{msgs['label.devision']}">
-                        <h:outputText value="#{competitor.user.defaultHandgunDevision}" />
-                    </p:column>
-
-                    <p:column headerText="#{msgs['label.category']}">
-                        <h:outputText value="#{competitor.user.category}" />
-                    </p:column>
-                 </p:dataTable>
-                </p:overlayPanel>
-
-                <p:commandButton type="button" value="#{msgs['button.competition.results']}" icon="ui-icon-extlink" />
-
                 <h:panelGrid columns="2" cellpadding="5">
-                  <h:outputText value="" />
-                  <h:outputText value="" />
-
                    <h:outputText value="#{msgs['label.min-rounds']}:" style="font-weight: bold" />
                    <h:outputText value="#{competition.minRound}" />
 

@@ -22,5 +22,14 @@
     <param-name>primefaces.THEME</param-name>
     <param-value>dot-luv</param-value>
   </context-param>
-
+  
+  <filter>
+    <filter-name>AuthenticationFilter</filter-name>
+    <filter-class>bg.softuni.filter.AuthenticationFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+    <filter-name>AuthenticationFilter</filter-name>
+    <url-pattern>/page/*</url-pattern>
+  </filter-mapping>
 </web-app>

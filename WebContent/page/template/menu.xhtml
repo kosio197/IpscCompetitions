@@ -15,7 +15,7 @@
             <c:choose>
 			    <c:when test="#{not empty LOGGED_USER}">
                     Hello #{LOGGED_USER.firstName} &nbsp;&nbsp;&nbsp;
-                     <p:commandButton value="#{msgs['button.back']}" icon="ui-icon-extlink" action= "competitions.xhtml?faces-redirect=true" /> &nbsp;
+                     <p:commandButton value="#{msgs['button.competitions']}" ajax="false" icon="ui-icon-extlink" action= "competitions.xhtml?faces-redirect=true" /> &nbsp;
                      <p:commandButton value="#{msgs['button.logout']}" icon="ui-icon-extlink" action= "#{LogoutBean.logout}" /> &nbsp;
                      <p:commandButton value="#{msgs['button.editProfile']}" icon="ui-icon-extlink" action= "manageUserProfile.xhtml?faces-redirect=true" /> &nbsp;
                   <c:choose>
@@ -31,6 +31,7 @@
                   </c:choose>	    
 			    </c:when>
 			    <c:otherwise>
+			        <p:commandButton value="#{msgs['button.competitions']}" ajax="false" icon="ui-icon-extlink" action= "competitions.xhtml?faces-redirect=true" /> &nbsp;
                     <p:commandButton value="#{msgs['button.login']}" icon="ui-icon-extlink" action="login.xhtml?faces-redirect=true" /> &nbsp;
                     <p:commandButton value="#{msgs['button.register']}" icon="ui-icon-extlink" ajax="false" action="userRegister.xhtml?faces-redirect=true" /> &nbsp;
 			    </c:otherwise>
